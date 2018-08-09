@@ -1,0 +1,77 @@
+.box1{
+	background-color: #0079bf
+}
+.trelloimage{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 80px;
+	width: 200px;
+}
+.global-header-section-button{
+	/*background-color: #e2e4e6*/
+	border-radius: .4em;
+	/*box-shadow: 0 2px 0 #cdd2d4*/
+	/*color: white;*/
+	display: inline-block;
+	font-size: .8em;
+	line-height: 1.1em;
+	margin: 0.25em;
+	padding: .7em 1.3em;
+	text-decoration: none;
+	vertical-align: top;
+}
+.homebutton
+{
+ background-color: #1f618d 
+ /*padding-top:10px;
+ padding-bottom: 10px;*/
+ /*height:100px;*/
+}
+.headermenus{
+	padding-top: 12px;
+	padding-right: 100px;
+}
+.headermenus a{
+	text-decoration: none;
+	color: white;
+}
+.loginbutton{
+	background-color:  #2ecc71
+}
+.feature1{
+	background: url(images/usecases-bg.jpg);
+	margin: 0px;
+	padding: 0px;
+	/*width: 100%*/
+}
+.centered-feature1{
+	padding-top: 100px;
+}
+.retty{
+	padding: 0px;
+	margin: 0px;
+}
+.loginform{
+	padding-top: 150px;
+	/*padding-left: 430px;*/
+}
+.section-wrapper{
+	background-color: #026aa7
+	/*padding-bottom:0px;*/
+}
+.loginform{
+	color: white;
+	font-weight: 600;
+}
+.feature{
+	padding-top: 0px;
+}
+.centered-feature1{
+	color: white;
+}
+.trelloimage2{
+	background-color: #315989
+}
+/*.feature3-heading{
+	background-color: orange;
+}*/

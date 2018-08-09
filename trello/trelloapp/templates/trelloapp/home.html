@@ -1,0 +1,241 @@
+ <!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Trello</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+</head>
+<body>
+{% load static %}
+<style>
+  .text-center{
+      text-align: center;
+  }
+
+
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'trelloapp/bootstrap.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
+<nav class="navbar navbar-inverse navbar-fixed-top box1">
+  <!-- <div class="container"> -->
+  	<div class="row header">
+      
+        <div class="col-sm-12">
+          <div class="navbar-header">
+            <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button> -->
+             <img class="trelloimage" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+          </div>
+        </div>
+         <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+          <!-- <ul class="nav navbar-nav"> </ul> -->
+        <ul class="nav navbar-nav navbar-right navbars">
+          <!-- <a class="global-header-section-button" href="#">Home</a> -->
+          <div class="headermenus">
+            <a href="">Home</a>
+            <!-- <a href="{% url 'trelloapp:login' %}">Login</a> -->
+          </div>
+        </ul>
+      <!-- </div> -->
+    </div>
+<!-- </div> -->
+</nav>
+
+<!-- edit -->
+
+<div class="section-wrapper container-fluid">
+
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4 login-wrapper">
+      <div class="loginform">
+          <h1>Welcome back to Trello!</h1>
+          <br>
+          <br>
+          <h1 class="text-center">Log in to Trello</h1>
+          <h2>Login</h2>
+
+<form method="post">
+            {% csrf_token %}
+            Username 
+            <br>
+            <input name="username" autofocus="" required="" class="form-control" maxlength="254" id="id_username" type="text">
+            <br>
+            Password
+            <br>
+            <input name="password" required="" id="id_password" class="form-control" type="password">
+            <br>
+            <br>
+            <button type="submit" class="form-control ">Login</button>
+          </form>
+
+
+          <span>or <a style="color: white" href="{% url 'trelloapp:register' %}">create an account</a></span>
+          <div class="googleLogin">
+              <GoogleButton />
+              <!-- <Link to="/login/email"><p class="link"> <a href="">Log in with email and password</a></p></Link> -->
+              <!-- <p class="link"><a href="">Log in with SSO</a></p> -->
+              <br>
+              <br>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit end -->
+<!-- <div class="container"> -->
+<!-- <div class="section-wrapper">
+  <div class="col-sm-offset-4 md-offset-4">
+      <div class="loginform">
+          <h1>Welcome back to Trello!</h1>
+          <br>
+          <br>
+          <h1 class="text-center">Log in to Trello</h1>
+          <h2>Login</h2>
+          <form method="post">
+            {% csrf_token %}
+            Username 
+            <br>
+            {{ form.username }}
+            <br>
+            Password
+            <br>
+            {{ form.password }}
+            <br>
+            <br>
+            <button type="submit">Login</button>
+          </form>
+          <span>or <a href="">create an account</a></span>
+          <div class="googleLogin">
+              <GoogleButton />
+              <Link to="/login/email"><p class="link"> <a href="">Log in with email and password</a></p></Link>
+              <p class="link"><a href="">Log in with SSO</a></p>
+              <br>
+              <br>
+          </div>
+      </div>
+    
+  </div>
+</div>
+<-- </div> -->
+
+<div class="feature">
+<div class="col-sm-12 retty">
+ <div class="feature1">
+                <div class="col-sm-offset-2 md-offset-4">
+                <div class="centered-feature1">
+                    <h1>Trello lets you work more collaboratively and get more done.</h1>
+                    <p>Trello’s boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible and rewarding way. </p>
+                    <!-- <button style="background-color: green">Sign Up It's Free</button> -->
+                </div>
+                <div class="centered-feature1">
+                    <!-- <p class="small">Already use Trello? <a href="">Log in.</a> </p> -->
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+          </div>
+</div>
+</div>   
+<div class="col-sm-12 trelloimage2">
+<div class="feature2">
+                <div class="feature2-wrap">
+                    <div class="feature2-content">
+                        <div class="feature2-heading">
+                            <p style="font-size: 20px"> The Design Team shares updates on current projects so everyone in the company knows what's going on. </p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-offset-1">
+                <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/07ced7d72fcf302f25981df3d6fdb46f/usecases-board01.jpg">
+                <div class="feature2-footer">
+                    <div class="footer-center">
+                        <p style="font-size: 20px">From startups to Fortune 500 companies, Trello is the most visual way for teams to collaborate on any project. </p>
+                    </div>
+                </div>
+            </div> 	
+          </div>
+          </div>
+
+<!-- <div class="col-sm-12 trelloimage2"> -->
+<div class="feature3" style="background-color: #ffab4a">
+                <div class="feature3-heading">
+                  <div class="col-sm-offset-4">
+                    <h2 style="font-size: 40px">Information At A Glance</h2>
+                  </div>
+                  <div class="col-sm-offset-3">
+                    <p style="font-size: 20px">Dive into the details by adding comments, attachments, and more directly to <br>Trello cards. Collaborate on projects from beginning to end. </p>
+                  </div>
+                </div>
+              <!-- </div> -->
+              <!-- </div> -->
+                <div class="col-sm-offset-3">
+                    <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/1b9100e29afb7df3e805a6c5210a202e/usecases-card.jpg">
+                </div>        
+            </div>
+          <!-- </div> -->
+
+
+<div class="feature4" style="background-color: #ffab4a">
+                <div class="feature4-content">
+                  <div class="col-sm-4">
+                    <div class="feature4-text" style="padding-top: 100px">
+                        <h2>Work With Any Team</h2>
+                        <p>Whether it’s for work, a side project or even the next family vacation, Trello helps your team stay organized.</p>
+                        <!-- <a class="button pink-button" target="_blank"> Build Your Dream Team </a> -->
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="feature4-pic">
+                            <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/43e915441342077c5fdc6be43b9c1c86/usecases-tiles.jpg">
+                    </div>
+                  </div>
+                </div>
+            </div>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- <script src="js/bootstrap.min.js"></script> -->
+ <script>
+ </script>
+</body>
+</html>
+
+
+
+	              
+
+
+	            
+
+         
+
+
+         
+
+
+
+         
+
+
+         
+        
+        
+
+
+
+
+
+
+
+
+         
