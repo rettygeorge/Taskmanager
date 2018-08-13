@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
+from django.views.decorators.csrf import csrf_exempt
 
 from . import views
 app_name="trelloapp"
@@ -13,6 +14,8 @@ urlpatterns = [
     path('createproject/',views.createproject,name='createproject'),
     
     path('task/<int:id>/',views.createtask,name='createtask'),
-    path('project/<int:id>/',views.projectpage,name='projectpage'),
+    path('project/<int:id>/',csrf_exempt(views.projectpage),name='projectpage'),
+    path('adduser/', csrf_exempt(views.adduser), name='adduser'),
+    path('taskcompleted/',csrf_exempt(views.taskcompleted), name='taskcompleted')
 
 ]

@@ -7,5 +7,6 @@ admin.site.register(Project,ProjectAdmin)
 
 # Register your models here.
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('project', 'taskname', 'priority','taskdescription')
+    list_display = ('project', 'taskname', 'priority','taskdescription','completed')
 admin.site.register(Task,TaskAdmin)
+

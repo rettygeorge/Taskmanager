@@ -17,6 +17,43 @@
 
     <!-- Custom styles for this template -->
     <!-- <link href="css/small-business.css" rel="stylesheet"> -->
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
 
   </head>
 
@@ -73,9 +110,18 @@
       <!-- Call to Action Well -->
       <div class="card text-white bg-secondary my-4 text-center">
         <div class="card-body">
-          <p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+          
+          
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<a href="#" id="adduser" class="btn btn-primary">Add User</a>
+
+<ul id="myUL">
+  
+</ul>
         </div>
       </div>
+
+
 
       <!-- Content Row -->
       <div class="row">
@@ -87,10 +133,14 @@
               
               <h2 class="card-title">{{task.taskname}}</h2>
               <p class="card-text">{{task.taskdescription}}</p>
-               <p class="card-text">Priority : {{task.taskdescription}}</p>
+               <p class="card-text">Priority : {{task.priority}}</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">More Info</a>
+              <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
+                {% if task.completed is True%}Completed
+                {%else%}
+              Mark as completed{%endif%}
+            </a>
             </div>
           </div>
           
@@ -143,6 +193,128 @@
 
     <script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+
+
+// $(document).ready(function(){
+//     console.log("retty")
+//     var id;
+ 
+
+function myFunction() {
+    $("#myUL").show()
+    var input, filter, ul, li, a, i;
+    // console.log("form submitted!")
+    username = $('#myInput').val();
+    console.log(username)
+    $.ajax({
+        url : "", // the endpoint
+        type : "POST", // http method
+        data : { username : username,
+                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
+        success : function(name) {
+          // console.log(name.projectid)
+          var projectid=name.projectid
+          // console.log(projectid)
+          var users_html = "";
+          for (var key in name) {
+              var i;
+              for (i = 0; i < name[key].length; i++) {
+                  var username=name[key][i]
+                  users_html = users_html+"<li><a onclick='userList(this.id,"+name.projectid+")' id='"+username+"'>"+name[key][i]+"<a></li>"
+          } 
+          $("#myUL").html(users_html)
+        }
+          
+                       },
+
+        });
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+
+}
+
+  function userList(username,projectid) {
+     // console.log(projectid);
+     $("#myInput").val(username)
+     $("#myUL").hide()
+     $('#adduser').on('click', function(event){
+        event.preventDefault();
+        $.ajax({
+        url : "{% url 'trelloapp:adduser' %}", // the endpoint
+        type : "POST", // http method
+        data : { projectid : projectid,
+                 username : username,
+                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
+        success : function(name) {
+          // console.log(name.projectid)
+        //   var projectid=name.projectid
+        //   // console.log(projectid)
+        //   var users_html = "";
+        //   for (var key in name) {
+        //       var i;
+        //       for (i = 0; i < name[key].length; i++) {
+        //           var username=name[key][i]
+        //           users_html = users_html+"<li><a onclick='userList(this.id,"+name.projectid+")' id='"+username+"'>"+name[key][i]+"<a></li>"
+        //   } 
+        //   $("#myUL").html(users_html)
+        // }
+          
+                       },
+
+        });
+});
+     
+    
+
+
+  }
+
+  $('.taskbtn').on('click', function(event){
+        event.preventDefault();
+        // console.log(this.id);
+        var button=$(this);
+        $.ajax({
+        url : "{% url 'trelloapp:taskcompleted' %}", // the endpoint
+        type : "POST", // http method
+        data : { taskid:this.id,
+                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
+        success : function(name) {
+         button.html("Completed");
+          console.log(button.val());
+                       },
+
+        });
+       
+});
+  
+
+ 
+
+//  $('#myInput').on('click', function(event){
+//     event.preventDefault();
+//     console.log("form submitted!")
+//     username = $('#myInput').val();
+//     console.log(username)
+// });
+
+// function taskcompleted() {
+//     // event.preventDefault();
+//     console.log("sucess");
+
+// }
+
+</script>
 
   </body>
 

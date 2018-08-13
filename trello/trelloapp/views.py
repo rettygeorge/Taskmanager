@@ -1,9 +1,12 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, reverse
 from .forms import RegistrationForm, ProjectCreationForm, TaskCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Project, Task
+from .models import Project, Task, User
+from django.db.models import Q
+import json
+
 
 def index(request):
     return render(request,'trelloapp/home.html')
@@ -45,11 +48,24 @@ def createproject(request):
 		form=ProjectCreationForm()
 	return render(request,'trelloapp/createproject.html',{'form':form})
 def projectpage(request,id):
-	project=Project.objects.get(id=id)
-	task_list=Task.objects.filter(project=project)
+	
+
 	# print(project)
-	# print(obj)
-	return render(request,'trelloapp/register2.html',{'project':project,'task_list':task_list})
+	# print(request.POST)
+	if request.method == 'POST':
+		# import pdb;
+		# pdb.set_trace()
+		name=request.POST.get('username')
+		# print(name)
+		user_list=User.objects.filter(Q(username__contains=name)).values_list('username',flat=True)
+		# print(user_list)
+		return HttpResponse(json.dumps({"usernames":list(user_list),"projectid":id}),content_type="application/json")
+	else:
+		project=Project.objects.get(id=id)
+		task_list=Task.objects.filter(project=project).order_by("-completed")
+		return render(request,'trelloapp/register2.html',{'project':project,'task_list':task_list})
+
+
 def createtask(request,id):
 	# print(type(projectid))
 	project=Project.objects.get(id=id)
@@ -66,3 +82,21 @@ def createtask(request,id):
 	else:
 		form=TaskCreationForm()
 	return render(request,'trelloapp/task.html',{'form':form})
+
+def adduser(request,self, *args, **kwargs):
+	if request.method == 'POST':
+		projectid=request.POST.get('projectid')
+		print(projectid)
+		username=request.POST.get('username')
+		print(username)
+		user=User.objects.get(username=username)
+		# print("projectname",project)
+		self.projectmember.add(user)
+
+def taskcompleted(request):
+	if request.method == 'POST':
+		taskid=request.POST.get('taskid')
+		task=Task.objects.get(id=taskid)
+		task.completed=True
+		task.save()
+		return HttpResponse()
