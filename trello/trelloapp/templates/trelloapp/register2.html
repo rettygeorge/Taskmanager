@@ -14,7 +14,7 @@
     <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="{% static 'trelloapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'trelloapp/css/small-business.css' %}" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
     <!-- Custom styles for this template -->
     <!-- <link href="css/small-business.css" rel="stylesheet"> -->
     <style>
@@ -53,14 +53,20 @@
 #myUL li a:hover:not(.header) {
   background-color: #eee;
 }
+.userimage{
+  height: 70px;
+  width: 70px;
+  background-color:  #d7dbdd ;
+  border-radius: 50%;
+}
 </style>
 
   </head>
 
-  <body>
+  <body style="padding: 0px">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">Start Bootstrap</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,8 +92,33 @@
         </div>
       </div>
     </nav>
-
+ -->
     <!-- Page Content -->
+
+  <nav class="navbar navbar-inverse navbar-fixed-top box1" style="padding-top: 0px;margin: 0px">
+        <div class="row header" style="width: 100%">
+          <div class="col-sm-4">
+            <div class="navbar-header">
+              <img class="trelloimage1" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <ul class="nav navbar-nav navbar-right pull-right">
+              <div class="menus">
+                <div class="homemenu" style="padding-left: 20px;padding-top: 20px">
+                  <li><a href="{% url 'trelloapp:logout' %}">Logout</a></li>
+                </div>
+                <div class="userimage">
+                <p style="padding-left: 25px; font-size: 25px;padding-top: 10px">{{user.username|slice:"1"}}</p>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
     <div class="container">
 
       <!-- Heading Row -->
@@ -121,6 +152,34 @@
         </div>
       </div>
 
+
+
+
+<div class="container">
+
+     
+
+      <!-- Team Members Row -->
+      <div class="row" id="appenduser">
+        <!-- <div class="col-lg-12">
+          </div>
+         -->
+        {% for member in projectmember %}
+
+        <div class="col-lg-1 col-sm-4 text-center mb-2 username">
+          <div class="userimage"><span><p style="padding-top: 25px;padding-left: 10px">{{member.username}}</p></span></div>
+        
+        </div>
+         {% endfor %}  
+        
+      
+       
+       
+        
+      </div>
+
+    </div>
+    
 
 
       <!-- Content Row -->
@@ -180,12 +239,11 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <!-- <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
       </div>
-      <!-- /.container -->
-    </footer>
+    </footer> -->
 
     <!-- Bootstrap core JavaScript -->
     <!-- <script src="vendor/jquery/jquery.min.js"></script>
@@ -249,6 +307,7 @@ function myFunction() {
      $("#myInput").val(username)
      $("#myUL").hide()
      $('#adduser').on('click', function(event){
+        $("#myInput").val("")
         event.preventDefault();
         $.ajax({
         url : "{% url 'trelloapp:adduser' %}", // the endpoint
@@ -257,18 +316,27 @@ function myFunction() {
                  username : username,
                  csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
         success : function(name) {
-          // console.log(name.projectid)
-        //   var projectid=name.projectid
-        //   // console.log(projectid)
-        //   var users_html = "";
-        //   for (var key in name) {
-        //       var i;
-        //       for (i = 0; i < name[key].length; i++) {
-        //           var username=name[key][i]
-        //           users_html = users_html+"<li><a onclick='userList(this.id,"+name.projectid+")' id='"+username+"'>"+name[key][i]+"<a></li>"
-        //   } 
-        //   $("#myUL").html(users_html)
-        // }
+          // console.log("1111",name.usernames)
+
+          // var users_name = "";
+          // users_name = 
+          //  $("#appenduser").append('<div class="col-lg-1 col-sm-4 text-center mb-2 username">'
+          //                         +'<div class="userimage"><span><p style="padding-top:25px">'
+          //                         +name.username+'</p></span></div></div>')
+
+          var users_name="";
+          for (var key in name) {
+              console.log(name[key][0])
+              var i;
+              for (i = 0; i < name[key].length; i++) {
+                  var username=name[key][i]
+                  users_name = users_name+'<div class="col-lg-1 col-sm-4 text-center mb-2 username">'
+                                  +'<div class="userimage"><span><p style="padding-top:25px">'
+                                  +name[key][i]+'</p></span></div></div>'
+          } 
+          $("#appenduser").html(users_name)
+        }
+          
           
                        },
 
@@ -292,6 +360,8 @@ function myFunction() {
         success : function(name) {
          button.html("Completed");
           console.log(button.val());
+
+
                        },
 
         });
@@ -315,7 +385,12 @@ function myFunction() {
 // }
 
 </script>
-
+{% block js %}
+     
+      <script src="http://code.jquery.com/jquery-latest.js"></script>
+      <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+      
+      <script>$.endlessPaginate({paginateOnScroll: true});</script>
+  {% endblock %}
   </body>
-
 </html>

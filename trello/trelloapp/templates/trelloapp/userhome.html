@@ -24,45 +24,64 @@
     
 
 
-   <nav class="navbar navbar-inverse navbar-fixed-top box1">
-  <!-- <div class="container"> -->
+   <!-- <nav class="navbar navbar-inverse navbar-fixed-top box1">
     <div class="row header">
       
         <div class="col-sm-12">
           <div class="navbar-header">
-            <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-            </button> -->
+            
              <img class="trelloimage" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
           </div>
-        <!-- </div> -->
-         <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
-          <!-- <ul class="nav navbar-nav"> </ul> -->
+        
         <ul class="nav navbar-nav navbar-right navbars">
-          <!-- <a class="global-header-section-button" href="#">Home</a> -->
+          
           <div class="headermenus">
             <a href="">Home</a>
-            <!-- <a href="{% url 'trelloapp:login' %}">Login</a> -->
+            <a style="padding-left: 20px" href="{% url 'trelloapp:logout' %}">Logout</a>
           </div>
         </div>
         </ul>
-      <!-- </div> -->
+    
     </div>
-<!-- </div> -->
-</nav>
+</nav> -->
 
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top box1">
+        <div class="row header" style="width: 100%">
+          <div class="col-sm-4">
+            <div class="navbar-header">
+              <img class="trelloimage1" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <ul class="nav navbar-nav navbar-right pull-right">
+              <div class="menus">
+                <div class="homemenu">
+                  <li style="padding-left: 20px;padding-top: 6px"><a href="{% url 'trelloapp:logout' %}"> Logout</a></li>
+                </div>
+                <div class="userimage">
+                <p style="padding-left: 10px; font-size: 25px;">{{user.username|slice:"1"}}</p>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+     
     <!-- Page Content -->
-    <div class="container">
-
+    <div class="container-fluid">
       <!-- Jumbotron Header -->
+      <div class="custom-row">
       <header class="jumbotron">
         <h1 class="display-3">Welcome {{user.username}}</h1>
         
         <a href="{% url 'trelloapp:createproject' %}" class="btn btn-primary btn-lg">CREATE PROJECT</a>
       </header>
-
+     </div>
       <!-- Page Features -->
       <div class="row text-center">
 
@@ -99,12 +118,29 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
+    <!-- <footer class="trellofooter" style="background-color: #0079bf">
+      <div class="container" style="background-color: #0079bf">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <div class="footermenus">
+        <ul>
+            <table>
+            <tr>
+            <th><li><a href="">Tour</a></li></th>
+            <th><li><a href="">Pricing</a></li></th>
+            <th><li><a href="">Apps</a></li></th>
+            <th><li><a href="">Jobs</a></li></th>
+            <th><li><a href="">Blog</a></li></th>
+            <th><li><a href="">Developers</a></li></th>
+            <th><li><a href="">About</a></li></th>
+            <th><li><a href="">Help</a></li></th>
+            <th><li><a href="">Legal</a></li></th>
+            <th><li><a href="">Privacy</a></li></th>
+            <tr>
+          </table>
+        </ul>
       </div>
-      <!-- /.container -->
-    </footer>
+      </div>
+    </footer> -->
 
     
     <script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>

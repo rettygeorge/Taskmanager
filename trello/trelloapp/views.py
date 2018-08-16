@@ -26,7 +26,7 @@ def register(request):
 		form = RegistrationForm()
 	
 	return render(request, 'trelloapp/register.html', {'form':form})
-@login_required(login_url='trelloapp:login')
+@login_required(login_url='trelloapp:index')
 def userhome(request):
 	
 	obj_list=Project.objects.filter(user=request.user)
@@ -57,14 +57,36 @@ def projectpage(request,id):
 		# pdb.set_trace()
 		name=request.POST.get('username')
 		# print(name)
-		user_list=User.objects.filter(Q(username__contains=name)).values_list('username',flat=True)
-		# print(user_list)
-		return HttpResponse(json.dumps({"usernames":list(user_list),"projectid":id}),content_type="application/json")
+	
+		project=Project.objects.get(id=id)
+		user_list = User.objects.filter(Q(username__contains=name)).exclude(id=request.user.id).exclude(id__in=[x.id for x in Project.objects.filter(id=id).first().projectmember.all().only('id')]).values_list('username', flat=True)
+		users=list(user_list)
+		# projectmember=project.projectmember.all().values_list('username',flat=True)
+		# print(projectmember)
+		# # users.remove(project.user)
+		# for user in list(user_list):
+		# 	for user1 in list(projectmember):
+		# 		if(user1==user):
+		# 			users.remove(user)
+		# print(users)
+		return HttpResponse(json.dumps({"usernames":users,"projectid":id}),content_type="application/json")
 	else:
 		project=Project.objects.get(id=id)
-		task_list=Task.objects.filter(project=project).order_by("-completed")
-		return render(request,'trelloapp/register2.html',{'project':project,'task_list':task_list})
+		projectmember=project.projectmember.all()
+		print(projectmember)
+		project_member=project.projectmember.all().values_list('username',flat=True)
+		print(list(project_member))
+		print(project.user)
+		print(request.user)
+		
 
+		task_list=Task.objects.filter(project=project).order_by("-completed")
+		if(request.user==project.user or request.user in list(project_member)):
+				
+			return render(request,'trelloapp/register2.html',{'project':project,'task_list':task_list,'projectmember':projectmember})
+		else:
+			return render(request,'trelloapp/notamember.html')
+		return HttpResponse()
 
 def createtask(request,id):
 	# print(type(projectid))
@@ -81,17 +103,32 @@ def createtask(request,id):
 		# return redirect('trelloapp:projectpage','id'=id)
 	else:
 		form=TaskCreationForm()
-	return render(request,'trelloapp/task.html',{'form':form})
+		project=Project.objects.get(id=id)
+		project_member=project.projectmember.all().values_list('username',flat=True)
+		if(request.user==project.user or request.user in list(project_member)):
+			return render(request,'trelloapp/task.html',{'form':form})
+		else:
+			return render(request,'trelloapp/notamember.html')
 
-def adduser(request,self, *args, **kwargs):
+def adduser(request,*args, **kwargs):
+	print(id)
 	if request.method == 'POST':
+		username=request.POST.get('username')
 		projectid=request.POST.get('projectid')
 		print(projectid)
-		username=request.POST.get('username')
-		print(username)
-		user=User.objects.get(username=username)
-		# print("projectname",project)
-		self.projectmember.add(user)
+
+		project = Project.objects.filter(id=request.POST.get('projectid')).first()
+		user = User.objects.filter(username=request.POST.get('username')).first()
+
+		if user and project:
+			project.projectmember.add(user)
+			project=Project.objects.get(id=projectid)
+			projectmember=project.projectmember.all().values_list('username',flat=True)
+			print(projectmember)
+			
+			return HttpResponse(json.dumps({"usernames":list(projectmember)}),content_type="application/json")
+		return HttpResponse('failed')		
+	return HttpResponse('Get Request Not Allowed')	
 
 def taskcompleted(request):
 	if request.method == 'POST':
@@ -100,3 +137,19 @@ def taskcompleted(request):
 		task.completed=True
 		task.save()
 		return HttpResponse()
+def signup(request):
+	if request.method == 'POST':
+		form = RegistrationForm(request.POST)
+		# print(form)
+		if form.is_valid():
+			print('hiiiiiii')
+			form.save()
+			username=form.cleaned_data.get("username")
+			raw_password = form.cleaned_data.get("password1")
+			user=authenticate(username=username,password=raw_password)
+			login(request,user)
+			return redirect('trelloapp:index')
+	else:
+		form = RegistrationForm()
+	
+	return render(request, 'trelloapp/signup.html', {'form':form})

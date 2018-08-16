@@ -8,8 +8,10 @@ app_name="trelloapp"
 urlpatterns = [
     path('', auth_views.login, {'template_name':'trelloapp/home.html'}, name='index'),
     path('register/', views.register, name='register'),
-    path('login/', auth_views.login, {'template_name': 'trelloapp/login.html'}, name='login'),
+    # path('login/', auth_views.login, {'template_name': 'trelloapp/login.html'}, name='login'),
+    path('userlogin/', auth_views.login, {'template_name': 'trelloapp/userlogin.html'}, name='userlogin'),
     path('userhome/', views.userhome, name='userhome'),
+    path('signup/', views.signup, name='signup'),
     path('logout/',views.logout_view,name='logout'),
     path('createproject/',views.createproject,name='createproject'),
     
