@@ -81,11 +81,8 @@ LOGIN_REDIRECT_URL = '/userhome/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trello',
-        'USER': 'root',
-        'PASSWORD':'retty',
-        'HOST':'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
