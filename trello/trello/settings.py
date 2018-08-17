@@ -82,7 +82,7 @@ LOGIN_REDIRECT_URL = '/userhome/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'NAME': os.path.join(BASE_DIR, 'mydatabase'),
     }
 }
 
