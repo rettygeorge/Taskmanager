@@ -83,8 +83,33 @@
       </header>
      </div>
       <!-- Page Features -->
+       <h3>Projects you are member in:</h3>
+       <br>
       <div class="row text-center">
 
+
+      {% for item in project_member %}
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card carddetails">
+            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
+            <div class="card-body">
+              <h4 class="card-title">{{item.name}}</h4>
+              <p class="card-text">{{item.description|truncatewords:5}}</p>
+              <p class="card-text">Added By:{{item.user}}</p>
+
+            </div>
+            <div class="card-footer">
+              <!-- print({{item.id}}) -->
+              <a href="{% url 'trelloapp:projectpage' item.id %}" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+
+      <h3>Projects Created by you:</h3>
+      <br>
+       <div class="row text-center">
       {% for item in obj %}
 
         <div class="col-lg-3 col-md-6 mb-4">

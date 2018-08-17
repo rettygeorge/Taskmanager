@@ -28,9 +28,10 @@ def register(request):
 	return render(request, 'trelloapp/register.html', {'form':form})
 @login_required(login_url='trelloapp:index')
 def userhome(request):
-	
+	print("required user",request.user)
+	project_member=Project.objects.filter(projectmember__exact=request.user)
 	obj_list=Project.objects.filter(user=request.user)
-	return render(request,'trelloapp/userhome.html',{'obj':obj_list})
+	return render(request,'trelloapp/userhome.html',{'obj':obj_list,'project_member':project_member})
 
 def logout_view(request):
 	logout(request)
