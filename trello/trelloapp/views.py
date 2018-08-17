@@ -73,18 +73,23 @@ def projectpage(request,id):
 	else:
 		project=Project.objects.get(id=id)
 		projectmember=project.projectmember.all()
-		print(projectmember)
+		print("project members",projectmember)
 		project_member=project.projectmember.all().values_list('username',flat=True)
-		print(list(project_member))
-		print(project.user)
-		print(request.user)
+		print("project member list",list(project_member))
+		print("project created",project.user)
+		print("current user",request.user)
 		
 
 		task_list=Task.objects.filter(project=project).order_by("-completed")
-		if(request.user==project.user or request.user in list(project_member)):
-				
+		# if(request.user in project_member):
+		# 	print("Yes")
+		# else:
+		# 	print("no")
+		if(request.user==project.user or (request.user.username in list(project_member))):
+			print("hai")	
 			return render(request,'trelloapp/register2.html',{'project':project,'task_list':task_list,'projectmember':projectmember})
 		else:
+			print("hello")
 			return render(request,'trelloapp/notamember.html')
 		return HttpResponse()
 
@@ -105,7 +110,7 @@ def createtask(request,id):
 		form=TaskCreationForm()
 		project=Project.objects.get(id=id)
 		project_member=project.projectmember.all().values_list('username',flat=True)
-		if(request.user==project.user or request.user in list(project_member)):
+		if(request.user==project.user or request.user.username in list(project_member)):
 			return render(request,'trelloapp/task.html',{'form':form})
 		else:
 			return render(request,'trelloapp/notamember.html')
