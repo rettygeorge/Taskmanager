@@ -252,11 +252,21 @@
                {{task.completed_by}}</p>
             </div>
             <div class="card-footer">
-              <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
+              {% if task.completed is True%}
+              <a href="" id="{{task.id}}" class="btn btn-success taskbtn">
                 {% if task.completed is True%}Completed
                 {%else%}
               Mark as completed{%endif%}
+              
             </a>
+            {% else %}
+             <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
+                {% if task.completed is True%}Completed
+                {%else%}
+              Mark as completed{%endif%}
+              
+            </a>
+            {% endif %}
             </div>
           </div>
           
@@ -454,6 +464,7 @@ function myFunction() {
           console.log("taskid",name.taskid)
         $("#task"+name.taskid).html(name.taskcompleted);
          button.html("Completed");
+         button.attr("class","btn btn-success")
           console.log(button.val());
           // $("#task"+name.taskid).html('<p>'+name.taskcompleted+'</p>');
           $("#task"+name.taskid).html('<p style="color:green">Completed By:<span style="color:black">'+name.taskcompleted+'</span></p>');
