@@ -23,4 +23,5 @@ body {
 }
 .carddetails{
 	height: 250px;
+	cursor: pointer;
 }

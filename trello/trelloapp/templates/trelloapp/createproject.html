@@ -6,9 +6,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!doctype html>
 <html>
-
+{% load static %}
 <head>
-	<title>Project Creation Form</title>
+	<title>Trello</title>
+        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Student Registration Form Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
@@ -38,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="content-agileits">
 		<h1 class="title">Project Creation Form</h1>
 		<div class="left">
-			<form action="#" method="post" data-toggle="validator">
+			<form enctype="multipart/form-data" action="#" method="post" data-toggle="validator" id="uploadproject">
 				{% csrf_token %}
 				<!-- <div class="form-group">
 					<label for="firstname" class="control-label">Projet Name:</label>
@@ -51,7 +52,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="help-block with-errors"></div>
 				</div>
 				 -->
-				Project Name:
+				<!-- Project Name:
 				<br>
 				{{form.name}}
 				<br>
@@ -59,10 +60,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<br>
 				{{form.description}}
 				<br>
+				{{form.picture}}
+				<br> -->
+				{{form.as_p}}
 				
 				
 				<!-- <div class="form-group"> -->
-					<button type="submit" class="btn btn-lg">submit</button>
+					<button type="submit" value="Post" class="btn btn-lg">submit</button>
 				<!-- </div> -->
 			</form>
 		</div>
@@ -78,7 +82,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/validator.min.js"></script>
+	<script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 	<!-- /js files -->
+	<script type="text/javascript">
+// 	$('#uploadproject').on('submit', function(event){
+//     event.preventDefault();
+//     console.log("form submitted!")
+//     create_post()  // sanity check
+//      });
+//  function create_post() {
+//     var formdata = new FormData($('#uploadproject')[0]);
+//     console.log(formdata, "create post is working!")
+//     $.ajax({
+//         url : "", // the endpoint
+//         type : "POST", // http method
+//         data : formdata,
+//         processData: false,
+//         contentType: false,
+//         success : function(json) {
+//             // console.log(json); // log the returned json to the console
+//             // console.log("success");
+//             // console.log(json.id)
+//             // $("#postdetails").prepend("<h1>"+json.title+"</h1><h3>"+json.body+"</h3><p>User: "+json.user+"</p><p>Date: "+json.date+"</p><p id='likecount"+json.id+"'>Like Count:0</p><input type='button' class='likebutton' value='Like' id="+json.id+"></input><img src='"+json.imageurl+"'width='"+250+"'>");
+//            },
+// }); // sanity check
+// }
+	</script>
 </body>
 
 </html>

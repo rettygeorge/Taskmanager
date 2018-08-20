@@ -25,7 +25,7 @@ class ProjectCreationForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ('name','description')
+        fields = ('name','description','picture')
 
 class TaskCreationForm(forms.ModelForm):
 

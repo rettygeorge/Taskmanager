@@ -2,6 +2,9 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from django.views.decorators.csrf import csrf_exempt
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 from . import views
 app_name="trelloapp"
@@ -21,3 +24,5 @@ urlpatterns = [
     path('taskcompleted/',csrf_exempt(views.taskcompleted), name='taskcompleted')
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

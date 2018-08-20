@@ -2,13 +2,15 @@
 <html lang="en">
 
   <head>
+    {% load static %}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Heroic Features - Start Bootstrap Template</title>
+    <title>Trello</title>
+        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
     {% load static %}
     
     <link href="{% static 'trelloapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -79,10 +81,11 @@
       <header class="jumbotron">
         <h1 class="display-3">Welcome {{user.username}}</h1>
         
-        <a href="{% url 'trelloapp:createproject' %}" class="btn btn-primary btn-lg">CREATE PROJECT</a>
+        <!-- <a href="{% url 'trelloapp:createproject' %}" class="btn btn-primary btn-lg">CREATE PROJECT</a> -->
       </header>
      </div>
       <!-- Page Features -->
+      {% if project_member%}
        <h3>Projects you are member in:</h3>
        <br>
       <div class="row text-center">
@@ -104,20 +107,27 @@
             </div>
           </div>
         </div>
+      {% empty %}
+      <p style="padding-left: 80px">You are not a member in any project</p>
       {% endfor %}
       </div>
-
+      {% endif %}
+       {% if obj%}
       <h3>Projects Created by you:</h3>
       <br>
        <div class="row text-center">
+        
       {% for item in obj %}
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card carddetails">
             <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
-            <div class="card-body">
-              <h4 class="card-title">{{item.name}}</h4>
-              <p class="card-text">{{item.description|truncatewords:5}}</p>
+
+            <div class="card-body" style="background: url(/media/{{item.picture}});height: 100%;background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+              <h4 class="card-title" style="color: white">{{item.name}}</h4>
+              <p class="card-text" style="color: white">{{item.description|truncatewords:5}}</p>
             </div>
             <div class="card-footer">
               <!-- print({{item.id}}) -->
@@ -125,19 +135,29 @@
             </div>
           </div>
         </div>
+        
+
+      {% empty %}
+      <p style="padding-left: 80px">You haven't created any project yet</p>
       {% endfor %}
+      {% endif %}
 
      
-
-
+ <div class="col-lg-3 col-md-6 mb-4">
+         <a href="{% url 'trelloapp:createproject' %}" style="text-decoration: none;color: black">
+          <div class="card carddetails">
+            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
+            
+            <div class="card-body" style="background-color: #d6dbdf;">
+            <p style="padding-top: 80px">Create a new Project </p></div>
         
-
-        
-
-        
-
-      </div>
+          </div>
+        </a>
+        </div>
+       </div>
       <!-- /.row -->
+
+
 
     </div>
     <!-- /.container -->

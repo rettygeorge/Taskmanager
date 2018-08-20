@@ -2,13 +2,15 @@
 <html lang="en">
 
   <head>
+    {% load static %}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Small Business - Start Bootstrap Template</title>
+    <title>Trello</title>
+        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
     {% load static %}
     <!-- Bootstrap core CSS -->
     <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -23,14 +25,14 @@
 }
 
 #myInput {
-  background-image: url('/css/searchicon.png');
+  /*background-image: url('/css/searchicon.png');*/
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 100%;
   font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+  padding: 10px 18px 10px 38px;
+  /*border: 1px solid #ddd;*/
+  /*margin-bottom: 12px;*/
 }
 
 #myUL {
@@ -43,7 +45,7 @@
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
   background-color: #f6f6f6;
-  padding: 12px;
+  /*padding: 12px;*/
   text-decoration: none;
   font-size: 18px;
   color: black;
@@ -63,7 +65,9 @@
 
   </head>
 
-  <body style="padding: 0px">
+  <body style="padding: 0px;background: url('/media/{{project.picture}}');height: 100%;background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
 
     <!-- Navigation -->
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -95,21 +99,28 @@
  -->
     <!-- Page Content -->
 
-  <nav class="navbar navbar-inverse navbar-fixed-top box1" style="padding-top: 0px;margin: 0px">
+  <nav class="navbar navbar-inverse navbar-fixed-top topnav" style="padding-top: 0px;margin: 0px">
         <div class="row header" style="width: 100%">
-          <div class="col-sm-4">
+          <div class="col-sm-1">
             <div class="navbar-header">
+              <a style="cursor: pointer;" href="{% url 'trelloapp:userhome' %}">
               <img class="trelloimage1" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+            </a>
             </div>
           </div>
-          <div class="col-sm-8">
+
+         
+
+
+
+          <div class="col-sm-11">
             <ul class="nav navbar-nav navbar-right pull-right">
               <div class="menus">
-                <div class="homemenu" style="padding-left: 20px;padding-top: 20px">
+                <div class="homemenu1" style="padding-left: 20px;padding-top: 10px">
                   <li><a href="{% url 'trelloapp:logout' %}">Logout</a></li>
                 </div>
-                <div class="userimage">
-                <p style="padding-left: 25px; font-size: 25px;padding-top: 10px">{{user.username|slice:"1"}}</p>
+                <div class="userimage1">
+                <p style="padding-left: 12px; font-size: 25px;">{{user.username|slice:"1"}}</p>
                 </div>
               </div>
             </ul>
@@ -123,15 +134,34 @@
 
       <!-- Heading Row -->
       <div class="row my-4">
-        <div class="col-lg-8">
+        <!-- <div class="col-lg-8">
           <img class="img-fluid rounded" src="{% static 'trelloapp/images/project.jpg' %}" alt="" style="height: 250px;width: 800px;">
-        </div>
+        </div> -->
         <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
+
+        <div class="col-sm-3">
+            <div class="card text-white bg-secondary my-4 text-center" style="width: 300px">
+    
+          
+          
+<input style="width: 300px;background-color: rgba(0,0,0,0.1);" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<ul id="myUL">
+  
+</ul>
+      </div>
+
+          </div>
+
+ <div class="col-sm-2" style="padding-top: 28px;padding-left: 50px">
+<a href="#" id="adduser" class="btn btn-primary">+</a>
+          </div>
+
+        <div class="col-sm-7 projectdetails">
     
           <h1>{{project.name}}</h1>
           <p>{{project.description}}</p>
-          <a class="btn btn-primary btn-lg" href="{% url 'trelloapp:createtask' project.id %}">ADD TASKS</a>
+          <!-- <a class="btn btn-primary btn-lg" href="{% url 'trelloapp:createtask' project.id %}">ADD TASKS</a> -->
     
         </div>
         <!-- /.col-md-4 -->
@@ -139,23 +169,46 @@
       <!-- /.row -->
 
       <!-- Call to Action Well -->
-      <div class="card text-white bg-secondary my-4 text-center">
-        <div class="card-body">
+      <!-- <div class="card text-white bg-secondary my-4 text-center" style="width: 300px">
+
           
           
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<input style="width: 300px" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 <a href="#" id="adduser" class="btn btn-primary">Add User</a>
 
 <ul id="myUL">
   
 </ul>
-        </div>
+
+      </div> -->
+
+
+<!-- <div class="col-sm-12">
+      <div class="col-sm-3">
+            <div class="card text-white bg-secondary my-4 text-center" style="width: 300px">
+    
+          
+          
+<input style="width: 300px;background-color: #0069d9" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<ul id="myUL">
+  
+</ul>
       </div>
 
+          </div>
 
 
 
-<div class="container">
+          <div class="col-sm-9" style="padding-top: 28px">
+<a href="#" id="adduser" class="btn btn-primary">+</a>
+          </div>
+        </div> -->
+
+
+
+
+<div class="container-fluid">
 
      
 
@@ -181,18 +234,22 @@
     </div>
     
 
-
+    <br>
+    <br>
       <!-- Content Row -->
       <div class="row">
         {% for task in task_list %}
         <div class="col-md-4 mb-4">
           
-          <div class="card h-100">
+          <div class="card h-90" style="width: 80%">
             <div class="card-body">
               
               <h2 class="card-title">{{task.taskname}}</h2>
               <p class="card-text">{{task.taskdescription}}</p>
                <p class="card-text">Priority : {{task.priority}}</p>
+               
+               <p class="card-text" id="task{{task.id}}"><span style="color: green">{% if task.completed_by %}Completed By :{%endif%}</span>
+               {{task.completed_by}}</p>
             </div>
             <div class="card-footer">
               <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
@@ -205,6 +262,40 @@
           
         </div>
         {% endfor %}
+        
+         <div class="col-md-4 mb-4">
+          <a href="{% url 'trelloapp:createtask' project.id %}" style="text-decoration: none;color: black">
+          <div class="card h-90" style="background-color: rgba(128,128,128,0.9);cursor: pointer;width: 80%">
+            <div class="card-body">
+
+               
+          <!-- <div class="card carddetails"> -->
+            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
+            
+            <!-- <div class="card-body" style="background-color: rgba(128,128,128,0.5);"> -->
+            <p style="padding-top: 100px;padding-left: 70px;padding-bottom: 80px">Create a Task </p><!-- </div> -->
+        
+          </div>
+        </div>
+        </a>
+      
+              <!-- <h2 class="card-title">{{task.taskname}}</h2> -->
+              <!-- <p class="card-text">{{task.taskdescription}}</p> -->
+               <!-- <p class="card-text">Priority : {{task.priority}}</p> -->
+                <!-- <a href="{% url 'trelloapp:createproject' %}" style="text-decoration: none;color: black"> -->
+               <!-- <p class="card-text" id="task{{task.id}}"><span style="color: green">{% if task.completed_by %}Completed By :{%endif%}</span> -->
+               <!-- {{task.completed_by}}</p> -->
+            </div>
+            <!-- <div class="card-footer">
+              <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
+                {% if task.completed is True%}Completed
+                {%else%}
+              Mark as completed{%endif%}
+            </a>
+            </div> -->
+          </div>
+          
+        </div>
       </div>
         <!-- /.col-md-4 -->
        <!--  <div class="col-md-4 mb-4">
@@ -356,10 +447,16 @@ function myFunction() {
         url : "{% url 'trelloapp:taskcompleted' %}", // the endpoint
         type : "POST", // http method
         data : { taskid:this.id,
+
                  csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
         success : function(name) {
+          console.log("taskcompletedby",name.taskcompleted)
+          console.log("taskid",name.taskid)
+        $("#task"+name.taskid).html(name.taskcompleted);
          button.html("Completed");
           console.log(button.val());
+          // $("#task"+name.taskid).html('<p>'+name.taskcompleted+'</p>');
+          $("#task"+name.taskid).html('<p style="color:green">Completed By:<span style="color:black">'+name.taskcompleted+'</span></p>');
 
 
                        },

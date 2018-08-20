@@ -24,6 +24,9 @@
     line-height: 2em;
     font-weight: bold;
 }
+.topnav{
+	background-color: rgb(0,0,0,0.3);
+}
 .body1 span a{
 	color: #82bfe2;
 	font-size: 20px;
@@ -38,7 +41,7 @@
 	color: white;
 }
 .body4{
-	background-color:  #f5b041 ;
+	background: linear-gradient(0deg, #f06e47, #ffab4a) ;
 }
 .body4 h2 p{
 	color: white;
@@ -51,6 +54,30 @@
 }
 .body5{
 	background-color: white;
+}
+.body6{
+	background-color: #eb5a46;
+}
+.body7{
+	background-color: #7b8fd1;
+}
+.body7 h1{
+	font-weight: bold;
+}
+.trellofooter{
+	background-color: green;
+}
+.trellofooter a{
+	color: white;
+	text-decoration: none;
+	padding: 30px;
+	padding-bottom: 50px;
+}
+.body8{
+	background:  url(images/taco.jpg);
+}
+.body8 h1{
+	font-weight: bold;
 }
 .body2{
 	background: url(images/usecases-bg.jpg);
@@ -85,6 +112,12 @@
 	float: right;
 	cursor: pointer;
 }
+.homemenu1{
+	/*padding-top: 30px;*/
+	/*padding-right: 50px;*/
+	float: right;
+	cursor: pointer;
+}
 .menus{
 	float: right;
 }
@@ -95,6 +128,17 @@
 	/*background-color: red;*/
 	padding: 8px 15px;
 	background-color: #5aac44;
+	border-radius: 12%;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+.homemenu1 a{
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+	/*background-color: red;*/
+	padding: 8px 15px;
+	background-color: rgb(0,0,0,0.9);
 	border-radius: 12%;
 	box-shadow: 0 2px 0 rgba(0,0,0,0.3);
 	cursor: pointer;
@@ -193,4 +237,38 @@
 }
 .icon1{
 	background-color: red;
+}
+.workwithteam{
+	padding-top: 100px;
+	color: white;
+	font-weight: bold;
+}
+.workwithteam a{
+	box-shadow: 0 1px rgba(0,0,0,0.1);
+	background: rgba(196,201,204,0.3);
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+}
+.userimage1{
+	height: 38px;
+	width: 38px;
+	background-color:  #d7dbdd;
+	padding-right: 15px;
+	float: right;
+	border-radius: 50%;
+}
+.projectdetails h1{
+	color: white;
+	font-weight: 900;
+}
+.projectdetails p{
+	color: white;
+	font-weight: bold;
+}
+.card-body{
+	background-color: rgba(128,128,128,0.5)
+}
+.carddetails{
+	background-color: rgba(128,128,128,0.5)
 }

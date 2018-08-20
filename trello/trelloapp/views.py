@@ -37,12 +37,19 @@ def logout_view(request):
 	logout(request)
 	return render(request,'trelloapp/logout.html')
 def createproject(request):
+	# print(request.POST)
 	if request.method == 'POST':
+		# form = ProjectCreationForm(request.POST, request.FILES)
+		picture=request.FILES.get('picture')
+		print(picture)
 		name=request.POST.get('name')
+		print(name)
 		description = request.POST.get('description')
-		# body = request.POST.get('body')
-		# response_data = {}
-		project = Project(name=name, description=description,user=request.user)
+		print(description)
+		# # body = request.POST.get('body')
+		# # response_data = {}
+		# project = Project(name=name, description=description,user=request.user,picture=picture)
+		project = Project(name=name, description=description,user=request.user,picture=picture)
 		project.save()
 		return redirect('trelloapp:userhome')
 	else:
@@ -139,10 +146,16 @@ def adduser(request,*args, **kwargs):
 def taskcompleted(request):
 	if request.method == 'POST':
 		taskid=request.POST.get('taskid')
+		# user=request.POST.get('user')
+		# print(user)
+		print(request.user)
 		task=Task.objects.get(id=taskid)
 		task.completed=True
+		task.completed_by=request.user.username
 		task.save()
-		return HttpResponse()
+		task=Task.objects.get(id=taskid)
+		print(task.completed_by)
+		return JsonResponse({'taskcompleted':task.completed_by,'taskid':taskid})
 def signup(request):
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)

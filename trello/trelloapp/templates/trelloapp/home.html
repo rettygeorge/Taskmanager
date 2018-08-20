@@ -1,7 +1,9 @@
       <!DOCTYPE html>
       <html lang="en">
+      {% load static %}
       <head>
         <title>Trello</title>
+        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
@@ -9,7 +11,7 @@
         <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
       </head>
       <body>
-        {% load static %}
+        
         <style>
         .text-center{
           text-align: center;
@@ -178,9 +180,9 @@
         </div>
 
         <!-- <div class="row"> -->
-        <div class="col-sm-offset-1 col-sm-8">
+        <div class="col-sm-offset-1">
           
-          <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/07ced7d72fcf302f25981df3d6fdb46f/usecases-board01.jpg">
+          <img class="img-responsive" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/07ced7d72fcf302f25981df3d6fdb46f/usecases-board01.jpg">
           
           
         </div>
@@ -216,7 +218,7 @@
           
         </div>
          <div class="col-sm-offset-3">
-          <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/1b9100e29afb7df3e805a6c5210a202e/usecases-card.jpg">
+          <img class="img-responsive" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/1b9100e29afb7df3e805a6c5210a202e/usecases-card.jpg">
 
           
           
@@ -224,6 +226,110 @@
         
       </div>
     </div>
+
+
+
+    <div class="body6">
+    <div class="container">
+    <!--div class="container containerbox"-->
+      <div class="row">
+          
+                <div class="col-sm-6 workwithteam">
+                  <h1 class="getinspired">Work With Any Team</h1>
+                  <br>
+                  <P>
+                    Whether it’s for work, a side project or even the next family vacation, Trello helps your team stay organized.
+                  </P>
+                  <br>
+                   <a class="button">Build Your Dream Team</a>
+                 
+              </div>
+              <div class="col-sm-6" style="padding-top: 50px"><img class="img-responsive" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/43e915441342077c5fdc6be43b9c1c86/usecases-tiles.jpg"></div>
+              
+     </div>
+   </div>
+</div>
+
+
+
+ <div class="body7">
+    <div class="container">
+    <!--div class="container containerbox"-->
+      <div class="row">
+                <div class="col-sm-6" style="padding-top: 50px"><img class="img-responsive" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/c66b31f34142c6f1f3ba0e0655cf3486/usecases-powerups.png"></div>
+          
+                <div class="col-sm-6 workwithteam">
+                  <h1 class="getinspired">A Productivity Platform</h1>
+                  <br>
+                  <P>
+                    Integrate the apps your team already uses directly into your workflow. Power-Ups turn Trello boards into living applications to meet your team's unique business needs.
+                  </P>
+                  <br>
+                   <a class="button">Power-Up Your Workflow</a>
+                 
+              </div>
+             
+              
+     </div>
+   </div>
+</div>
+
+
+<div class="body8">
+    <div class="container-fluid">
+    <!--div class="container containerbox"-->
+      <div class="row">
+                <!-- <div class="col-sm-12" style="padding-top: 50px"> -->
+                  <!-- <h1 class="getinspired">A Productivity Platform</h1> -->
+                  <!-- <img class="img-responsive" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/60dc711cb04607c6a8a0c55b045aeb6d/usecases-taco.jpg" alt="Download on the App Store"> -->
+                <!-- </div> -->
+          
+                <div class="col-sm-offset-2 col-sm-6 workwithteam" style="padding-bottom: 262px;">
+                  <h1 class="getinspired">Always In Sync</h1>
+                  <br>
+                  <P>
+                    No matter where you are, Trello stays in sync across all of your devices. Collaborate with your team anywhere, from sitting on the bus to sitting on the beach.
+                  </P>
+                  <br>
+                   <a class="button">Power-Up Your Workflow</a>
+                 
+              </div>
+             
+              
+     </div>
+   </div>
+</div>
+
+
+<div class="container-fluid">
+        <div class="row" style="padding: 0px;margin: 0px">
+          <div class="col-sm-offset-3 col-sm-6">
+           
+                  <br>
+                  <h3 style="color: black">
+                   What are you waiting for?
+Sign up for free and become one of the millions of people around the world who have fallen in love with Trello. 
+                  </h3>
+                  <!-- <br> -->
+                   <!-- <a class="button">Sign-Up It's Free</a> -->
+            <!-- <br> -->
+            <!-- <br> -->
+          </div>
+        </div>
+        <br>
+        <br>
+      <div class="row" style="padding: 0px;margin: 0px">
+          <div class="col-sm-offset-5 col-sm-2 trellofooter">
+           
+                 
+                  <!-- <br> -->
+                   <a class="button">Sign-Up It's Free</a>
+            <!-- <br> -->
+            <!-- <br> -->
+          </div>
+        </div>
+
+      </div>
 
 
 
@@ -261,9 +367,9 @@
           </div>
         </div>
       </div> -->
-    </div> -->
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </div>
+    <script src="{% static 'trelloapp/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'trelloapp/js/bootstrap.min.js' %}"></script>
    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </script>
