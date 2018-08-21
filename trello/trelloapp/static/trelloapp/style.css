@@ -1,0 +1,274 @@
+.box1{
+	background-color: #0079bf
+}
+.trelloimage{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 80px;
+	width: 140px;
+}
+.trelloimage1{
+	/*padding-top: 10px;*/
+	/*padding-bottom: 10px;*/
+	height: 40px;
+	width: 80px;
+}
+.body1{
+	background-color: #026aa7;
+	padding-top:120px;
+	
+}
+.body1 h1{
+	color: white;
+	font-size: 40px;
+    line-height: 2em;
+    font-weight: bold;
+}
+.topnav{
+	background-color: rgb(0,0,0,0.3);
+}
+.body1 span a{
+	color: #82bfe2;
+	font-size: 20px;
+}
+.body11{
+	background-color: #026aa7;
+}
+.body3{
+	background-color: #315989;
+}
+.body3 p{
+	color: white;
+}
+.body4{
+	background: linear-gradient(0deg, #f06e47, #ffab4a) ;
+}
+.body4 h2 p{
+	color: white;
+
+}
+.formdetails{
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+}
+.body5{
+	background-color: white;
+}
+.body6{
+	background-color: #eb5a46;
+}
+.body7{
+	background-color: #7b8fd1;
+}
+.body7 h1{
+	font-weight: bold;
+}
+.trellofooter{
+	background-color: green;
+}
+.trellofooter a{
+	color: white;
+	text-decoration: none;
+	padding: 30px;
+	padding-bottom: 50px;
+}
+.body8{
+	background:  url(images/taco.jpg);
+}
+.body8 h1{
+	font-weight: bold;
+}
+.body2{
+	background: url(images/usecases-bg.jpg);
+}
+.body2 h1 p{
+	color:white;
+	font-weight: bold;
+}
+.global-header-section-button{
+	/*background-color: #e2e4e6*/
+	border-radius: .4em;
+	/*box-shadow: 0 2px 0 #cdd2d4*/
+	/*color: white;*/
+	display: inline-block;
+	font-size: .8em;
+	line-height: 1.1em;
+	margin: 0.25em;
+	padding: .7em 1.3em;
+	text-decoration: none;
+	vertical-align: top;
+}
+.homebutton
+{
+ background-color: #1f618d 
+ /*padding-top:10px;
+ padding-bottom: 10px;*/
+ /*height:100px;*/
+}
+.homemenu{
+	/*padding-top: 30px;*/
+	/*padding-right: 50px;*/
+	float: right;
+	cursor: pointer;
+}
+.homemenu1{
+	/*padding-top: 30px;*/
+	/*padding-right: 50px;*/
+	float: right;
+	cursor: pointer;
+}
+.menus{
+	float: right;
+}
+.homemenu a{
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+	/*background-color: red;*/
+	padding: 8px 15px;
+	background-color: #5aac44;
+	border-radius: 12%;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+.homemenu1 a{
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+	/*background-color: red;*/
+	padding: 8px 15px;
+	background-color: rgb(0,0,0,0.9);
+	border-radius: 12%;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+.signupmenu{
+	/*padding-top: 30px;*/
+	padding-right: 15px;
+	float: right;
+	cursor: pointer;
+}
+
+.signupmenu a{
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+	/*background-color: red;*/
+	padding: 8px 15px;
+	background-color: rgba(0,0,0,0.15);
+	border-radius: 12%;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+	cursor: pointer;
+}
+
+.loginbutton{
+	background-color:  #2ecc71
+}
+.feature1{
+	background: url(images/usecases-bg.jpg);
+	margin: 0px;
+	padding: 0px;
+	/*width: 100%*/
+}
+.centered-feature1{
+	padding-top: 100px;
+}
+.retty{
+	padding: 0px;
+	margin: 0px;
+}
+.loginform{
+	padding-top: 150px;
+	/*padding-left: 430px;*/
+}
+.section-wrapper{
+	background-color: #026aa7
+	/*padding-bottom:0px;*/
+}
+.loginform{
+	color: white;
+	font-weight: 600;
+}
+.feature{
+	padding-top: 0px;
+}
+.centered-feature1{
+	color: white;
+}
+.trelloimage2{
+	background-color: #315989
+}
+/*.feature3-heading{
+	background-color: orange;
+}*/
+/*.footermenus a{
+	text-decoration: underline;
+	color: white
+}*/
+.footermenus ul{
+	list-style: none;
+	color: white;
+}
+.footermenus a{
+	text-decoration: underline;
+	color: white;
+}
+.footermenus th{
+	padding-left: 50px;
+}
+.userimage{
+	height: 38px;
+	width: 38px;
+	background-color:  #d7dbdd
+;
+	padding-right: 15px;
+	float: right;
+	border-radius: 50%;
+}
+.custom-row:before, .custom-row:after{
+	margin-left: -15px;
+	margin-right: 15px;
+	display: table;
+	content: "";
+	clear: "both";
+	width: 100%;
+
+}
+.icon1{
+	background-color: red;
+}
+.workwithteam{
+	padding-top: 100px;
+	color: white;
+	font-weight: bold;
+}
+.workwithteam a{
+	box-shadow: 0 1px rgba(0,0,0,0.1);
+	background: rgba(196,201,204,0.3);
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+}
+.userimage1{
+	height: 38px;
+	width: 38px;
+	background-color:  #d7dbdd;
+	padding-right: 15px;
+	float: right;
+	border-radius: 50%;
+}
+.projectdetails h1{
+	color: white;
+	font-weight: 900;
+}
+.projectdetails p{
+	color: white;
+	font-weight: bold;
+}
+.card-body{
+	background-color: rgba(128,128,128,0.5)
+}
+.carddetails{
+	background-color: rgba(128,128,128,0.5)
+}

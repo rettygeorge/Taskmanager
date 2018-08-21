@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trello</title>
+        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
+    {% load static %}
+    
+    <link href="{% static 'trelloapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'trelloapp/css/heroic-features.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
+
+  </head>
+
+  <body style="padding: 0px">
+
+    
+
+
+   <!-- <nav class="navbar navbar-inverse navbar-fixed-top box1">
+    <div class="row header">
+      
+        <div class="col-sm-12">
+          <div class="navbar-header">
+            
+             <img class="trelloimage" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+          </div>
+        
+        <ul class="nav navbar-nav navbar-right navbars">
+          
+          <div class="headermenus">
+            <a href="">Home</a>
+            <a style="padding-left: 20px" href="{% url 'trelloapp:logout' %}">Logout</a>
+          </div>
+        </div>
+        </ul>
+    
+    </div>
+</nav> -->
+
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top box1">
+        <div class="row header" style="width: 100%">
+          <div class="col-sm-4">
+            <div class="navbar-header">
+              <img class="trelloimage1" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <ul class="nav navbar-nav navbar-right pull-right">
+              <div class="menus">
+                <div class="homemenu">
+                  <li style="padding-left: 20px;padding-top: 6px"><a href="{% url 'trelloapp:logout' %}"> Logout</a></li>
+                </div>
+                <div class="userimage">
+                <p style="padding-left: 10px; font-size: 25px;">{{user.username|slice:"1"}}</p>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+     
+    <!-- Page Content -->
+    <div class="container-fluid">
+      <!-- Jumbotron Header -->
+      <div class="custom-row">
+      <header class="jumbotron">
+        <h1 class="display-3">Welcome {{user.username}}</h1>
+        
+        <!-- <a href="{% url 'trelloapp:createproject' %}" class="btn btn-primary btn-lg">CREATE PROJECT</a> -->
+      </header>
+     </div>
+      <!-- Page Features -->
+      {% if project_member%}
+       <h3>Projects you are member in:</h3>
+       <br>
+      <div class="row text-center">
+
+
+      {% for item in project_member %}
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card carddetails">
+            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
+            <div class="card-body">
+              <h4 class="card-title">{{item.name}}</h4>
+              <p class="card-text">{{item.description|truncatewords:5}}</p>
+              <p class="card-text">Added By:{{item.user}}</p>
+
+            </div>
+            <div class="card-footer">
+              <!-- print({{item.id}}) -->
+              <a href="{% url 'trelloapp:projectpage' item.id %}" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+      <p style="padding-left: 80px">You are not a member in any project</p>
+      {% endfor %}
+      </div>
+      {% endif %}
+       {% if obj%}
+      <h3>Projects Created by you:</h3>
+      <br>
+       <div class="row text-center">
+        
+      {% for item in obj %}
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card carddetails">
+            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
+
+            <div class="card-body" style="background: url(/media/{{item.picture}});height: 100%;background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+              <h4 class="card-title" style="color: white">{{item.name}}</h4>
+              <p class="card-text" style="color: white">{{item.description|truncatewords:5}}</p>
+            </div>
+            <div class="card-footer">
+              <!-- print({{item.id}}) -->
+              <a href="{% url 'trelloapp:projectpage' item.id %}" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+        
+
+      {% empty %}
+      <p style="padding-left: 80px">You haven't created any project yet</p>
+      {% endfor %}
+      {% endif %}
+
+     
+ <div class="col-lg-3 col-md-6 mb-4">
+         <a href="{% url 'trelloapp:createproject' %}" style="text-decoration: none;color: black">
+          <div class="card carddetails">
+            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
+            
+            <div class="card-body" style="background-color: #d6dbdf;">
+            <p style="padding-top: 80px">Create a new Project </p></div>
+        
+          </div>
+        </a>
+        </div>
+       </div>
+      <!-- /.row -->
+
+
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <!-- <footer class="trellofooter" style="background-color: #0079bf">
+      <div class="container" style="background-color: #0079bf">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <div class="footermenus">
+        <ul>
+            <table>
+            <tr>
+            <th><li><a href="">Tour</a></li></th>
+            <th><li><a href="">Pricing</a></li></th>
+            <th><li><a href="">Apps</a></li></th>
+            <th><li><a href="">Jobs</a></li></th>
+            <th><li><a href="">Blog</a></li></th>
+            <th><li><a href="">Developers</a></li></th>
+            <th><li><a href="">About</a></li></th>
+            <th><li><a href="">Help</a></li></th>
+            <th><li><a href="">Legal</a></li></th>
+            <th><li><a href="">Privacy</a></li></th>
+            <tr>
+          </table>
+        </ul>
+      </div>
+      </div>
+    </footer> -->
+
+    
+    <script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  </body>
+
+</html>
