@@ -1,504 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    {% load static %}
+<head>
+{% load static %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>Trello</title>
-        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
-    {% load static %}
-    <!-- Bootstrap core CSS -->
-    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="{% static 'trelloapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'trelloapp/css/small-business.css' %}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
-    <!-- Custom styles for this template -->
-    <!-- <link href="css/small-business.css" rel="stylesheet"> -->
-    <style>
+<title>Trello</title>
+<link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
+{% load static %}
+
+<link href="{% static 'trelloapp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'trelloapp/css/small-business.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
+
+<style>
 * {
-  box-sizing: border-box;
+box-sizing: border-box;
 }
 
 #myInput {
-  /*background-image: url('/css/searchicon.png');*/
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 10px 18px 10px 38px;
-  /*border: 1px solid #ddd;*/
-  /*margin-bottom: 12px;*/
+
+background-position: 10px 12px;
+background-repeat: no-repeat;
+width: 100%;
+font-size: 16px;
+padding: 10px 18px 10px 38px;
+
 }
 
 #myUL {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+list-style-type: none;
+padding: 0;
+margin: 0;
 }
 
 #myUL li a {
-  border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  /*padding: 12px;*/
-  text-decoration: none;
-  font-size: 18px;
-  color: black;
-  display: block
+border: 1px solid #ddd;
+margin-top: -1px; 
+background-color: #f6f6f6;
+
+text-decoration: none;
+font-size: 18px;
+color: black;
+display: block
 }
 
 #myUL li a:hover:not(.header) {
-  background-color: #eee;
+background-color: #eee;
 }
 .userimage{
-  height: 70px;
-  width: 70px;
-  background-color:  #d7dbdd ;
-  border-radius: 50%;
+height: 70px;
+width: 70px;
+background-color:  #d7dbdd ;
+border-radius: 50%;
 }
 </style>
 
-  </head>
+</head>
 
-  <body style="padding: 0px;background: url('/media/{{project.picture}}');height: 100%;background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;">
+<body style="padding: 0px;background: url('/media/{{project.picture}}');height: 100%;background-position: center;
+background-repeat: no-repeat;
+background-size: cover;">
 
-    <!-- Navigation -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
- -->
-    <!-- Page Content -->
 
-  <nav class="navbar navbar-inverse navbar-fixed-top topnav" style="padding-top: 0px;margin: 0px">
-        <div class="row header" style="width: 100%">
-          <div class="col-sm-1">
+
+<nav class="navbar navbar-inverse navbar-fixed-top topnav" style="padding-top: 0px;margin: 0px">
+    <div class="row header" style="width: 100%">
+        <div class="col-sm-1">
             <div class="navbar-header">
-              <a style="cursor: pointer;" href="{% url 'trelloapp:userhome' %}">
-              <img class="trelloimage1" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
-            </a>
+                <a style="cursor: pointer;" href="{% url 'trelloapp:userhome' %}">
+                <img class="trelloimage1" src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/trello-header-logos/af7af6ed478d3460709d715d9b3f74a4/trello-logo-white.svg" alt="logo">
+                </a>
             </div>
-          </div>
-
-         
-
-
-
-          <div class="col-sm-11">
-            <ul class="nav navbar-nav navbar-right pull-right">
-              <div class="menus">
-                <div class="homemenu1" style="padding-left: 20px;padding-top: 10px">
-                  <li><a href="{% url 'trelloapp:logout' %}">Logout</a></li>
-                </div>
-                <div class="userimage1">
-                <p style="padding-left: 12px; font-size: 25px;">{{user.username|slice:"1"}}</p>
-                </div>
-              </div>
-            </ul>
-          </div>
         </div>
-      </nav>
+        <div class="col-sm-11">
+            <ul class="nav navbar-nav navbar-right pull-right">
+                <div class="menus">
+                    <div class="homemenu1" style="padding-left: 20px;padding-top: 10px">
+                        <li><a href="{% url 'trelloapp:logout' %}">Logout</a></li>
+                    </div>
+                    <div class="userimage1">
+                        <p style="padding-left: 12px; font-size: 25px;">{{user.username|slice:"1"}}</p>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
 
-    <div class="container">
-
-      <!-- Heading Row -->
-      <div class="row my-4">
-        <!-- <div class="col-lg-8">
-          <img class="img-fluid rounded" src="{% static 'trelloapp/images/project.jpg' %}" alt="" style="height: 250px;width: 800px;">
-        </div> -->
-        <!-- /.col-lg-8 -->
-
+<div class="container">
+    <div class="row my-4">
         <div class="col-sm-3">
             <div class="card text-white bg-secondary my-4 text-center" style="width: 300px">
-    
-          
-          
-<input style="width: 300px;background-color: rgba(0,0,0,0.1);" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
-<ul id="myUL">
-  
-</ul>
-      </div>
-
-          </div>
-
- <div class="col-sm-2" style="padding-top: 28px;padding-left: 50px">
-<a href="#" id="adduser" class="btn btn-primary">+</a>
-          </div>
-
+                <input style="width: 300px;background-color: rgba(0,0,0,0.1);" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                <ul id="myUL">
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-2" style="padding-top: 28px;padding-left: 50px">
+            <a href="#" id="adduser" class="btn btn-primary">+</a>
+        </div>
         <div class="col-sm-7 projectdetails">
-    
-          <h1>{{project.name}}</h1>
-          <p>{{project.description}}</p>
-          <!-- <a class="btn btn-primary btn-lg" href="{% url 'trelloapp:createtask' project.id %}">ADD TASKS</a> -->
-    
+            <h1>{{project.name}}</h1>
+            <p>{{project.description}}</p>
         </div>
-        <!-- /.col-md-4 -->
-      </div>
-      <!-- /.row -->
-
-      <!-- Call to Action Well -->
-      <!-- <div class="card text-white bg-secondary my-4 text-center" style="width: 300px">
-
-          
-          
-<input style="width: 300px" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-<a href="#" id="adduser" class="btn btn-primary">Add User</a>
-
-<ul id="myUL">
-  
-</ul>
-
-      </div> -->
-
-
-<!-- <div class="col-sm-12">
-      <div class="col-sm-3">
-            <div class="card text-white bg-secondary my-4 text-center" style="width: 300px">
-    
-          
-          
-<input style="width: 300px;background-color: #0069d9" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
-<ul id="myUL">
-  
-</ul>
-      </div>
-
-          </div>
-
-
-
-          <div class="col-sm-9" style="padding-top: 28px">
-<a href="#" id="adduser" class="btn btn-primary">+</a>
-          </div>
-        </div> -->
-
-
-
-
-<div class="container-fluid">
-
-     
-
-      <!-- Team Members Row -->
-      <div class="row" id="appenduser">
-        <!-- <div class="col-lg-12">
-          </div>
-         -->
-        {% for member in projectmember %}
-
-        <div class="col-lg-1 col-sm-4 text-center mb-2 username">
-          <div class="userimage"><span><p style="padding-top: 25px;padding-left: 10px">{{member.username}}</p></span></div>
-        
-        </div>
-         {% endfor %}  
-        
-      
-       
-       
-        
-      </div>
-
     </div>
-    
 
+    <div class="container-fluid">
+        <div class="row" id="appenduser">
+            {% for member in projectmember %}
+                <div class="col-lg-1 col-sm-4 text-center mb-2 username">
+                    <div class="userimage"><span><p style="padding-top: 25px;padding-left: 10px">{{member.username}}</p></span>
+                    </div>
+                </div>
+            {% endfor %}  
+        </div>
+    </div>
     <br>
     <br>
-      <!-- Content Row -->
-      <div class="row">
+
+
+    <div class="row">
         {% for task in task_list %}
         <div class="col-md-4 mb-4">
-          
-          <div class="card h-90" style="width: 80%">
-            <div class="card-body">
-              
-              <h2 class="card-title">{{task.taskname}}</h2>
-              <p class="card-text">{{task.taskdescription}}</p>
-               <p class="card-text">Priority : {{task.priority}}</p>
-               
-               <p class="card-text" id="task{{task.id}}"><span style="color: green">{% if task.completed_by %}Completed By :{%endif%}</span>
-               {{task.completed_by}}</p>
+            <div class="card h-90" style="width: 80%">
+                <div class="card-body">
+                    <h2 class="card-title">{{task.taskname}}</h2>
+                    <p class="card-text">{{task.taskdescription}}</p>
+                    <p class="card-text">Priority : {{task.priority}}</p>
+                    <p class="card-text" id="task{{task.id}}"><span style="color: green">{% if task.completed_by %}Completed By :{%endif%}</span>
+                    {{task.completed_by}}</p>
+                </div>
+                <div class="card-footer">
+                    {% if task.completed is True%}
+                    <a href="" id="{{task.id}}" class="btn btn-success taskbtn">
+                        {% if task.completed is True%}Completed
+                        {%else%}
+                        Mark as completed{%endif%}
+                    </a>
+                    {% else %}
+                    <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
+                        {% if task.completed is True%}Completed
+                        {%else%}
+                        Mark as completed{%endif%}
+                    </a>
+                    {% endif %}
+                </div>
             </div>
-            <div class="card-footer">
-              {% if task.completed is True%}
-              <a href="" id="{{task.id}}" class="btn btn-success taskbtn">
-                {% if task.completed is True%}Completed
-                {%else%}
-              Mark as completed{%endif%}
-              
-            </a>
-            {% else %}
-             <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
-                {% if task.completed is True%}Completed
-                {%else%}
-              Mark as completed{%endif%}
-              
-            </a>
-            {% endif %}
-            </div>
-          </div>
-          
         </div>
         {% endfor %}
-        
-         <div class="col-md-4 mb-4">
-          <a href="{% url 'trelloapp:createtask' project.id %}" style="text-decoration: none;color: black">
-          <div class="card h-90" style="background-color: rgba(128,128,128,0.9);cursor: pointer;width: 80%">
-            <div class="card-body">
-
-               
-          <!-- <div class="card carddetails"> -->
-            <!-- <img class="card-img-top" src="http://placehold.it/500x325" alt=""> -->
-            
-            <!-- <div class="card-body" style="background-color: rgba(128,128,128,0.5);"> -->
-            <p style="padding-top: 100px;padding-left: 70px;padding-bottom: 80px">Create a Task </p><!-- </div> -->
-        
-          </div>
-        </div>
-        </a>
-      
-              <!-- <h2 class="card-title">{{task.taskname}}</h2> -->
-              <!-- <p class="card-text">{{task.taskdescription}}</p> -->
-               <!-- <p class="card-text">Priority : {{task.priority}}</p> -->
-                <!-- <a href="{% url 'trelloapp:createproject' %}" style="text-decoration: none;color: black"> -->
-               <!-- <p class="card-text" id="task{{task.id}}"><span style="color: green">{% if task.completed_by %}Completed By :{%endif%}</span> -->
-               <!-- {{task.completed_by}}</p> -->
-            </div>
-            <!-- <div class="card-footer">
-              <a href="" id="{{task.id}}" class="btn btn-primary taskbtn">
-                {% if task.completed is True%}Completed
-                {%else%}
-              Mark as completed{%endif%}
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'trelloapp:createtask' project.id %}" style="text-decoration: none;color: black">
+                <div class="card h-90" style="background-color: rgba(128,128,128,0.9);cursor: pointer;width: 80%">
+                    <div class="card-body">
+                        <p style="padding-top: 100px;padding-left: 70px;padding-bottom: 80px">Create a Task </p><!-- </div> -->
+                    </div>
+                </div>
             </a>
-            </div> -->
-          </div>
-          
         </div>
-      </div>
-        <!-- /.col-md-4 -->
-       <!--  <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card Two</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">More Info</a>
-            </div>
-          </div>
-        </div> -->
-        <!-- /.col-md-4 -->
-        <!-- <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h2 class="card-title">Card Three</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">More Info</a>
-            </div>
-          </div>
-        </div> -->
-        <!-- /.col-md-4 -->
-
-      </div>
-      <!-- /.row -->
-
     </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
-    <!-- <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-    </footer> -->
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-    <script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script>
+</div>
 
 
-// $(document).ready(function(){
-//     console.log("retty")
-//     var id;
- 
+
+<script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script>
+
+
+
+
 
 function myFunction() {
     $("#myUL").show()
     var input, filter, ul, li, a, i;
-    // console.log("form submitted!")
+
     username = $('#myInput').val();
     console.log(username)
     $.ajax({
-        url : "", // the endpoint
-        type : "POST", // http method
-        data : { username : username,
-                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
-        success : function(name) {
-          // console.log(name.projectid)
-          var projectid=name.projectid
-          // console.log(projectid)
-          var users_html = "";
-          for (var key in name) {
-              var i;
-              for (i = 0; i < name[key].length; i++) {
-                  var username=name[key][i]
-                  users_html = users_html+"<li><a onclick='userList(this.id,"+name.projectid+")' id='"+username+"'>"+name[key][i]+"<a></li>"
-          } 
-          $("#myUL").html(users_html)
-        }
-          
-                       },
+    url : "", 
+    type : "POST", 
+    data : { username : username,
+    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
+    success : function(name) {
+    var projectid=name.projectid
 
-        });
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
+    var users_html = "";
+    for (var key in name) {
+        var i;
+        for (i = 0; i < name[key].length; i++) {
+            var username=name[key][i]
+            users_html = users_html+"<li><a onclick='userList(this.id,"+name.projectid+")' id='"+username+"'>"+name[key][i]+"<a></li>"
+        } 
+        $("#myUL").html(users_html)
     }
+
+    },
+
+});
+input = document.getElementById("myInput");
+filter = input.value.toUpperCase();
+ul = document.getElementById("myUL");
+li = ul.getElementsByTagName("li");
+for (i = 0; i < li.length; i++) {
+a = li[i].getElementsByTagName("a")[0];
+if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    li[i].style.display = "";
+} else {
+    li[i].style.display = "none";
+}
+}
 
 }
 
-  function userList(username,projectid) {
-     // console.log(projectid);
-     $("#myInput").val(username)
-     $("#myUL").hide()
-     $('#adduser').on('click', function(event){
+function userList(username,projectid) {
+
+    $("#myInput").val(username)
+    $("#myUL").hide()
+    $('#adduser').on('click', function(event){
         $("#myInput").val("")
         event.preventDefault();
         $.ajax({
-        url : "{% url 'trelloapp:adduser' %}", // the endpoint
-        type : "POST", // http method
-        data : { projectid : projectid,
-                 username : username,
-                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
-        success : function(name) {
-          // console.log("1111",name.usernames)
+            url : "{% url 'trelloapp:adduser' %}", 
+            type : "POST",
+            data : { projectid : projectid,
+            username : username,
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
+            success : function(name) {
+            //
 
-          // var users_name = "";
-          // users_name = 
-          //  $("#appenduser").append('<div class="col-lg-1 col-sm-4 text-center mb-2 username">'
-          //                         +'<div class="userimage"><span><p style="padding-top:25px">'
-          //                         +name.username+'</p></span></div></div>')
+                var users_name="";
+                for (var key in name) {
+                console.log(name[key][0])
+                var i;
+                for (i = 0; i < name[key].length; i++) {
+                    var username=name[key][i]
+                    users_name = users_name+'<div class="col-lg-1 col-sm-4 text-center mb-2 username">'
+                          +'<div class="userimage"><span><p style="padding-top:25px">'
+                          +name[key][i]+'</p></span></div></div>'
+                } 
+                $("#appenduser").html(users_name)
+                }
 
-          var users_name="";
-          for (var key in name) {
-              console.log(name[key][0])
-              var i;
-              for (i = 0; i < name[key].length; i++) {
-                  var username=name[key][i]
-                  users_name = users_name+'<div class="col-lg-1 col-sm-4 text-center mb-2 username">'
-                                  +'<div class="userimage"><span><p style="padding-top:25px">'
-                                  +name[key][i]+'</p></span></div></div>'
-          } 
-          $("#appenduser").html(users_name)
-        }
-          
-          
-                       },
+
+            },
 
         });
-});
-     
-    
+    });
 
 
-  }
 
-  $('.taskbtn').on('click', function(event){
-        event.preventDefault();
-        // console.log(this.id);
-        var button=$(this);
-        $.ajax({
-        url : "{% url 'trelloapp:taskcompleted' %}", // the endpoint
-        type : "POST", // http method
-        data : { taskid:this.id,
 
-                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
-        success : function(name) {
-          console.log("taskcompletedby",name.taskcompleted)
-          console.log("taskid",name.taskid)
+}
+
+$('.taskbtn').on('click', function(event){
+    event.preventDefault();
+    // console.log(this.id);
+    var button=$(this);
+    $.ajax({
+    url : "{% url 'trelloapp:taskcompleted' %}", // the endpoint
+    type : "POST", // http method
+    data : { taskid:this.id,
+
+    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val() },
+    success : function(name) {
+        console.log("taskcompletedby",name.taskcompleted)
+        console.log("taskid",name.taskid)
         $("#task"+name.taskid).html(name.taskcompleted);
-         button.html("Completed");
-         button.attr("class","btn btn-success")
-          console.log(button.val());
-          // $("#task"+name.taskid).html('<p>'+name.taskcompleted+'</p>');
-          $("#task"+name.taskid).html('<p style="color:green">Completed By:<span style="color:black">'+name.taskcompleted+'</span></p>');
+        button.html("Completed");
+        button.attr("class","btn btn-success")
+        console.log(button.val());
+        $("#task"+name.taskid).html('<p style="color:green">Completed By:<span style="color:black">'+name.taskcompleted+'</span></p>');
 
 
-                       },
+    },
 
-        });
-       
+    });
+
 });
-  
 
- 
 
-//  $('#myInput').on('click', function(event){
-//     event.preventDefault();
-//     console.log("form submitted!")
-//     username = $('#myInput').val();
-//     console.log(username)
-// });
 
-// function taskcompleted() {
-//     // event.preventDefault();
-//     console.log("sucess");
 
-// }
+
 
 </script>
 {% block js %}
-     
-      <script src="http://code.jquery.com/jquery-latest.js"></script>
-      <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
-      
-      <script>$.endlessPaginate({paginateOnScroll: true});</script>
-  {% endblock %}
-  </body>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+
+<script>$.endlessPaginate({paginateOnScroll: true});</script>
+{% endblock %}
+</body>
 </html>

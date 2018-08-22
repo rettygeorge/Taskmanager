@@ -15,6 +15,11 @@ class BootstrapMixinForm(forms.ModelForm):
 
 
 class RegistrationForm(BootstrapMixinForm, UserCreationForm):
+    """
+    User registration form
+
+    The User table in models.py and UserCreation form is used
+    """
 	email=forms.EmailField(required=True)
 
 	class Meta:
@@ -22,12 +27,26 @@ class RegistrationForm(BootstrapMixinForm, UserCreationForm):
 		fields = ('username','email','password1','password2')
 
 class ProjectCreationForm(forms.ModelForm):
+    """
+    Project creation form
+
+    The table Project in models.py is used
+
+    The name,description and picture fileds in Project table are used
+    """
 
     class Meta:
         model = Project
         fields = ('name','description','picture')
 
 class TaskCreationForm(forms.ModelForm):
+    """
+    Task creation form
+
+    The table Task in models.py is used
+
+    The taskname,priority and taskdescription in the Task table are used
+    """
 
     class Meta:
         model = Task

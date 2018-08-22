@@ -1,113 +1,49 @@
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!doctype html>
 <html>
 {% load static %}
 <head>
-	<title>Trello</title>
-        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Student Registration Form Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
-	/>
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+<title>Trello</title>
+<link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Student Registration Form Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+<script>
+	addEventListener("load", function () {
+	setTimeout(hideURLbar, 0);
+}, false);
+	function hideURLbar() {
+		window.scrollTo(0, 1);
+	}
+</script>
+	
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!-- fonts -->
-	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
-	<!-- /fonts -->
-	<!-- css -->
-	{% load static %}
-	<!-- <link href="{% static 'trelloapp/css/heroic-features.css' %}" rel="stylesheet"> -->
-	<link href="{%static 'trelloapp/css/bootstrap.css' %}" rel="stylesheet" type='text/css' media="all" />
-	<link href="{% static 'trelloapp/css/style.css' %}" rel="stylesheet" type='text/css' media="all" />
-	<!-- /css -->
+{% load static %}
+
+<link href="{%static 'trelloapp/css/bootstrap.css' %}" rel="stylesheet" type='text/css' media="all" />
+<link href="{% static 'trelloapp/css/style.css' %}" rel="stylesheet" type='text/css' media="all" />
+	
 </head>
 
 <body>
-
 	<div class="content-agileits">
 		<h1 class="title">Project Creation Form</h1>
 		<div class="left">
 			<form enctype="multipart/form-data" action="#" method="post" data-toggle="validator" id="uploadproject">
-				{% csrf_token %}
-				<!-- <div class="form-group">
-					<label for="firstname" class="control-label">Projet Name:</label>
-					<input type="text" class="form-control" id="projectname" placeholder="Projet Name" data-error="Enter Your First Name" required name="">
-					<div class="help-block with-errors"></div>
-				</div>
-				<div class="form-group">
-					<label for="lastname" class="control-label">Description:</label>
-					<input type="text" class="form-control retty" id="description" placeholder="Description" data-error="Enter Your Last Name" required>
-					<div class="help-block with-errors"></div>
-				</div>
-				 -->
-				<!-- Project Name:
-				<br>
-				{{form.name}}
-				<br>
-				Project Description:
-				<br>
-				{{form.description}}
-				<br>
-				{{form.picture}}
-				<br> -->
-				{{form.as_p}}
-				
-				
-				<!-- <div class="form-group"> -->
-					<button type="submit" value="Post" class="btn btn-lg">submit</button>
-				<!-- </div> -->
+			{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit" value="Post" class="btn btn-lg">submit</button>
 			</form>
 		</div>
 		<div class="right"></div>
 		<div class="clear"></div>
 	</div>
-	<!-- <p class="copyright-w3ls">© 2017 Student Registration Form. All Rights Reserved | Design by
-		<a href="https://w3layouts.com/" target="_blank">W3layouts</a>
-	</p> -->
-	<!-- js -->
 	<script src="js/jquery-2.1.4.min.js"></script>
-	<!-- //js -->
-
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/validator.min.js"></script>
 	<script src="{% static 'trelloapp/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-	<!-- /js files -->
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 	<script type="text/javascript">
-// 	$('#uploadproject').on('submit', function(event){
-//     event.preventDefault();
-//     console.log("form submitted!")
-//     create_post()  // sanity check
-//      });
-//  function create_post() {
-//     var formdata = new FormData($('#uploadproject')[0]);
-//     console.log(formdata, "create post is working!")
-//     $.ajax({
-//         url : "", // the endpoint
-//         type : "POST", // http method
-//         data : formdata,
-//         processData: false,
-//         contentType: false,
-//         success : function(json) {
-//             // console.log(json); // log the returned json to the console
-//             // console.log("success");
-//             // console.log(json.id)
-//             // $("#postdetails").prepend("<h1>"+json.title+"</h1><h3>"+json.body+"</h3><p>User: "+json.user+"</p><p>Date: "+json.date+"</p><p id='likecount"+json.id+"'>Like Count:0</p><input type='button' class='likebutton' value='Like' id="+json.id+"></input><img src='"+json.imageurl+"'width='"+250+"'>");
-//            },
-// }); // sanity check
-// }
 	</script>
 </body>
 

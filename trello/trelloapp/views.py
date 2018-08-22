@@ -9,8 +9,22 @@ import json
 
 
 def index(request):
-    return render(request,'trelloapp/home.html')
+	"""
+	To display the homepage
+
+	homepage contains the userlogin form
+	"""
+	return render(request,'trelloapp/home.html')
+
+
 def register(request):
+	"""
+	User registration page
+    
+    The user data is collected using RegistrationForm()
+
+    In POST method the user data is saved to the user table
+	"""
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
 		# print(form)
@@ -27,17 +41,37 @@ def register(request):
 	
 	return render(request, 'trelloapp/register.html', {'form':form})
 @login_required(login_url='trelloapp:index')
+
+
 def userhome(request):
+	"""
+	Userhome page
+
+	The Project table and projectmember field is filtered based on the current user and the Queryset is passed to the template userhome.html
+
+	This view is used to display the projects created by the current user and the projects in which the current users is added as a member
+	"""
 	print("required user",request.user)
 	project_member=Project.objects.filter(projectmember__exact=request.user)
 	obj_list=Project.objects.filter(user=request.user)
 	return render(request,'trelloapp/userhome.html',{'obj':obj_list,'project_member':project_member})
 
+
 def logout_view(request):
+	"""
+	Logout page
+
+	"""
 	logout(request)
 	return render(request,'trelloapp/logout.html')
+
+
 def createproject(request):
-	# print(request.POST)
+	"""
+	Project creation page
+
+	Project details are collected using ProjectCreationform and if the form is valid the data is saved to the Project table
+	"""
 	if request.method == 'POST':
 		# form = ProjectCreationForm(request.POST, request.FILES)
 		picture=request.FILES.get('picture')
@@ -46,37 +80,37 @@ def createproject(request):
 		print(name)
 		description = request.POST.get('description')
 		print(description)
-		# # body = request.POST.get('body')
-		# # response_data = {}
-		# project = Project(name=name, description=description,user=request.user,picture=picture)
+		
 		project = Project(name=name, description=description,user=request.user,picture=picture)
 		project.save()
 		return redirect('trelloapp:userhome')
 	else:
 		form=ProjectCreationForm()
 	return render(request,'trelloapp/createproject.html',{'form':form})
-def projectpage(request,id):
-	
 
-	# print(project)
-	# print(request.POST)
+
+def projectpage(request,id):
+	"""
+	Detail page of each project
+
+	Parameter : Project Id
+
+	In the POST method the User table is filtered based on the values entered in the "search user" field in and the result is returned in the form of a list to the register2.html page"
+
+	In the GET method the Project table is filtered based on the project id and the values in the corresponding projectmember field is passed to the template register2.html
+
+	This detail page of a project can be accessed by the user who creates that project and the users who are members in that project otherwise redirected to an error page
+	"""  
+
 	if request.method == 'POST':
-		# import pdb;
-		# pdb.set_trace()
+		
 		name=request.POST.get('username')
-		# print(name)
+		
 	
 		project=Project.objects.get(id=id)
 		user_list = User.objects.filter(Q(username__contains=name)).exclude(id=request.user.id).exclude(id__in=[x.id for x in Project.objects.filter(id=id).first().projectmember.all().only('id')]).values_list('username', flat=True)
 		users=list(user_list)
-		# projectmember=project.projectmember.all().values_list('username',flat=True)
-		# print(projectmember)
-		# # users.remove(project.user)
-		# for user in list(user_list):
-		# 	for user1 in list(projectmember):
-		# 		if(user1==user):
-		# 			users.remove(user)
-		# print(users)
+		
 		return HttpResponse(json.dumps({"usernames":users,"projectid":id}),content_type="application/json")
 	else:
 		project=Project.objects.get(id=id)
@@ -89,10 +123,7 @@ def projectpage(request,id):
 		
 
 		task_list=Task.objects.filter(project=project).order_by("-completed")
-		# if(request.user in project_member):
-		# 	print("Yes")
-		# else:
-		# 	print("no")
+		
 		if(request.user==project.user or (request.user.username in list(project_member))):
 			print("hai")	
 			return render(request,'trelloapp/register2.html',{'project':project,'task_list':task_list,'projectmember':projectmember})
@@ -101,19 +132,30 @@ def projectpage(request,id):
 			return render(request,'trelloapp/notamember.html')
 		return HttpResponse()
 
+
 def createtask(request,id):
-	# print(type(projectid))
+
+	"""
+	Task creation page
+
+	The task details is collected from the project using the TaskCreationForm
+
+	In the POST method the task details is save to the table Task
+
+	The task creation page of a project can be accessed by the user who creates that project and the users who are members in that project otherwise redirected to an error page
+	"""
+	
 	project=Project.objects.get(id=id)
 	if request.method == 'POST':
 		taskname=request.POST.get('taskname')
 		priority = request.POST.get('priority')
 		taskdescription = request.POST.get('taskdescription')
-		# response_data = {}
+		
 		task = Task(taskname=taskname, priority=priority,taskdescription=taskdescription,project=project)
 		task.save()
 		url = reverse(('trelloapp:projectpage'), kwargs={ 'id': id })
 		return HttpResponseRedirect(url)
-		# return redirect('trelloapp:projectpage','id'=id)
+		
 	else:
 		form=TaskCreationForm()
 		project=Project.objects.get(id=id)
@@ -123,7 +165,14 @@ def createtask(request,id):
 		else:
 			return render(request,'trelloapp/notamember.html')
 
+
 def adduser(request,*args, **kwargs):
+	"""
+	To add users to a project
+
+	The users are added to the manytomany field projectmember in the table Project
+
+	"""
 	print(id)
 	if request.method == 'POST':
 		username=request.POST.get('username')
@@ -143,11 +192,14 @@ def adduser(request,*args, **kwargs):
 		return HttpResponse('failed')		
 	return HttpResponse('Get Request Not Allowed')	
 
+
 def taskcompleted(request):
+	"""
+	To mark the task as completed
+	"""
 	if request.method == 'POST':
 		taskid=request.POST.get('taskid')
-		# user=request.POST.get('user')
-		# print(user)
+		
 		print(request.user)
 		task=Task.objects.get(id=taskid)
 		task.completed=True
@@ -156,10 +208,19 @@ def taskcompleted(request):
 		task=Task.objects.get(id=taskid)
 		print(task.completed_by)
 		return JsonResponse({'taskcompleted':task.completed_by,'taskid':taskid})
+
+
 def signup(request):
+	"""
+	User registration page
+    
+    The user data is collected using RegistrationForm()
+
+    In POST method the user data is saved to the user table
+	"""
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
-		# print(form)
+	
 		if form.is_valid():
 			print('hiiiiiii')
 			form.save()

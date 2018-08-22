@@ -1,252 +1,118 @@
-<!-- <h1>You are logged out!!</h1>
-<p>Login to continue...</p>
-<form action="{% url 'trelloapp:index' %}">
-	<input type="submit" value="Login">
-</form> -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+<title>Trello</title>
+<link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
+</head>
 
- <!DOCTYPE html>
-      <html lang="en">
-      {% load static %}
-      <head>
-        <title>Trello</title>
-        <link rel="icon" type="image/png" href="{% static 'trelloapp/images/favicon.ico' %}">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
-        <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
-        <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
-      </head>
-      <body>
-        {% load static %}
-        <style>
-        .text-center{
-          text-align: center;
-        }
+<body>
+{% load static %}
+<style>
+    .text-center{
+    text-align: center;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'trelloapp/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
 
 
-      </style>
-      <link rel="stylesheet" type="text/css" href="{% static 'trelloapp/bootstrap.min.css' %}">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="{% static 'trelloapp/style.css' %}">
-
-      
+<div class="jumbotron text-center body1" style="padding-bottom: 0px;margin-bottom: 0px">
+    <h1>Thank You for using Trello</h1>
+    <h1 class="text-center" style="padding: 0px;margin: 0px">You are logged out..</h1>
+    <span style="color: #82bfe2;font-size:20px"><a href="{% url 'trelloapp:index' %}"><u>Login to continue</u></a></span>
+</div>
 
 
 
-
-
-
-
-      <div class="jumbotron text-center body1" style="padding-bottom: 0px;margin-bottom: 0px">
-        <h1>Thank You for using Trello</h1>
-        <h1 class="text-center" style="padding: 0px;margin: 0px">You are logged out..</h1>
-        <span style="color: #82bfe2;font-size:20px"><a href="{% url 'trelloapp:index' %}"><u>Login to continue</u></a></span>
-      </div>
-
-      <div class="container-fluid body11">
-        <div class="row" style="padding: 0px;margin: 0px">
-          <div class="col-sm-offset-4 col-sm-4 formdetails">
+<div class="container-fluid body11">
+    <div class="row" style="padding: 0px;margin: 0px">
+        <div class="col-sm-offset-4 col-sm-4 formdetails">
             <form action="{% url 'trelloapp:index' %}">
-	<input style="background-color: green" type="submit" value="Login">
-</form> 
+            <input style="background-color: green" type="submit" value="Login">
+            </form> 
             <br>
             <br>
-          </div>
         </div>
-      </div>
-
-
-
-      <!-- <div class="feature">
-      <div class="col-sm-12 retty">
-       <div class="feature1">
-                      <div class="col-sm-offset-2 md-offset-4">
-                      <div class="centered-feature1">
-                          <h1>Trello lets you work more collaboratively and get more done.</h1>
-                          <p>Trello’s boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible and rewarding way. </p>
-                          
-                      </div>
-                      <div class="centered-feature1">
-                          
-                      </div>
-                      <br>
-                      <br>
-                      <br>
-                  </div>
-                </div>
-      </div>
-    </div>   -->
-
-
-
-      <!-- <div class="container-fluid body2">
-      <div class="jumbotron text-center" style="padding-bottom: 0px;margin-bottom: 0px">
-        <h1>Trello lets you work more collaboratively and get more done.</h1>
-                          <p>Trello’s boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible and rewarding way. </p>
-      </div>
-        
-      <div class="container-fluid">
-        <div class="row" style="padding: 0px;margin: 0px">
-          <div class="col-sm-offset-4 col-sm-4 formdetails">
-            
-                  <button style="background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);color: #fff;width: 200px;box-shadow: 0 2px 0 #3f6f21;margin: 2em auto 1em;cursor: pointer;font-weight: bold;font-size: .9em;padding-bottom: 35px;" type="submit" class="form-control ">Login</button>
-          
-                <br>
-                <br>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    </div>
+</div>
 
 
 
 
-    <div class="container-fluid body2" style="padding-top: 150px">
 
-      <div class="row">
+
+
+<div class="container-fluid body2" style="padding-top: 150px">
+    <div class="row">
         <div class="col-sm-offset-4 col-sm-6">
-          <h1 style="color: white;font-weight: bold">Trello lets you work more</h1>
-
-          
-          
+            <h1 style="color: white;font-weight: bold">Trello lets you work more</h1>
         </div>
-        
-      </div>
-
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-          <h1 style="color: white;font-weight: bold;padding-left: 10px">collaboratively and get more done.</h1>
-          <p style="font-size: 20px;color: white">Trello’s boards, lists, and cards enable you to organize and prioritize</p>
-
+            <h1 style="color: white;font-weight: bold;padding-left: 10px">collaboratively and get more done.</h1>
+            <p style="font-size: 20px;color: white">Trello’s boards, lists, and cards enable you to organize and prioritize</p>
         </div>
-        
-      </div>
-
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-sm-offset-4 col-sm-6">
-
-          <p style="font-size: 20px;color: white">your projects in a fun, flexible and rewarding way. </p>
-
-          
+            <p style="font-size: 20px;color: white">your projects in a fun, flexible and rewarding way. </p>
         </div>
-        
-      </div>
-
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
+            <button style="background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);color: #fff;width: 200px;box-shadow: 0 2px 0 #3f6f21;margin: 2em auto 1em;cursor: pointer;font-weight: bold;font-size: 1.5em;padding-bottom: 35px;" type="submit" class="form-control ">Sign Up-It's Free</button>
+        </div>
+    </div>
+</div>
 
 
-         <button style="background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);color: #fff;width: 200px;box-shadow: 0 2px 0 #3f6f21;margin: 2em auto 1em;cursor: pointer;font-weight: bold;font-size: 1.5em;padding-bottom: 35px;" type="submit" class="form-control ">Sign Up-It's Free</button>
-
-       </div>
-
-     </div>
-
-   </div>
 
 
 
 
 <div class="container-fluid">
-
-      <div class="row body3">
+    <div class="row body3">
         <div class="col-sm-offset-2 col-sm-10">
-          <p style="font-size: 30px;padding-top: 100px"> The Design Team shares updates on current projects so everyone in the company knows what's going on. </p>
-
-          
-          
+            <p style="font-size: 30px;padding-top: 100px"> The Design Team shares updates on current projects so everyone in the company knows what's going on. </p>
         </div>
-
-        <!-- <div class="row"> -->
         <div class="col-sm-offset-1 col-sm-8">
-          
-          <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/07ced7d72fcf302f25981df3d6fdb46f/usecases-board01.jpg">
-          
-          
+            <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/07ced7d72fcf302f25981df3d6fdb46f/usecases-board01.jpg">
         </div>
-         <div class="col-sm-offset-2 col-sm-10">
-          <p style="font-size: 30px">From startups to Fortune 500 companies, Trello is the most visual way for teams to collaborate on any project. </p>
-
-          
-          
+        <div class="col-sm-offset-2 col-sm-10">
+            <p style="font-size: 30px">From startups to Fortune 500 companies, Trello is the most visual way for teams to collaborate on any project. </p>
         </div>
-        
-      </div>
     </div>
+</div>
 
 
 
 
 
-    <div class="container-fluid">
-
-      <div class="row body4">
+<div class="container-fluid">
+    <div class="row body4">
         <div class="col-sm-offset-4">
-         <h2 style="font-size: 40px;padding-top: 100px;">Information At A Glance</h2>
-
-          
-          
-        </div>
-
-        <!-- <div class="row"> -->
-        <div class="col-sm-offset-3">
-          
-         <p style="font-size: 20px;padding-top: 20px">Dive into the details by adding comments, attachments, and more directly to <br>Trello cards. Collaborate on projects from beginning to end. </p>
-          
-          
-        </div>
-         <div class="col-sm-offset-3">
-          <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/1b9100e29afb7df3e805a6c5210a202e/usecases-card.jpg">
-
-          
-          
-        </div>
-        
-      </div>
-    </div>
-
-
-
-   
-  
-    <!-- <div class="feature3" style="background-color: #ffab4a">
-      <div class="feature3-heading">
-        <div class="col-sm-offset-4">
-          <h2 style="font-size: 40px">Information At A Glance</h2>
+            <h2 style="font-size: 40px;padding-top: 100px;">Information At A Glance</h2>
         </div>
         <div class="col-sm-offset-3">
-          <p style="font-size: 20px">Dive into the details by adding comments, attachments, and more directly to <br>Trello cards. Collaborate on projects from beginning to end. </p>
+            <p style="font-size: 20px;padding-top: 20px">Dive into the details by adding comments, attachments, and more directly to <br>Trello cards. Collaborate on projects from beginning to end. </p>
         </div>
-      </div>
-      
-      <div class="col-sm-offset-3">
-        <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/1b9100e29afb7df3e805a6c5210a202e/usecases-card.jpg">
-      </div>        
-    </div> -->
+        <div class="col-sm-offset-3">
+            <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/1b9100e29afb7df3e805a6c5210a202e/usecases-card.jpg">
+        </div>
+    </div>
+</div>
 
 
-
-   <!--  <div class="feature4" style="background-color: #ffab4a">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="feature4-text" style="padding-top: 100px">
-            <h2>Work With Any Team</h2>
-            <p>Whether it’s for work, a side project or even the next family vacation, Trello helps your team stay organized.</p>
-            
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="feature4-pic">
-            <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/43e915441342077c5fdc6be43b9c1c86/usecases-tiles.jpg">
-          </div>
-        </div>
-      </div> -->
-    </div> -->
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  </script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</script>
 </body>
 </html>
 
